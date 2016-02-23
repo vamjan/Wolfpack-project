@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+
 using System.Collections;
 
 //require Character Script to be attached to this object.
@@ -6,7 +7,6 @@ using System.Collections;
 public class ControlsInput : MonoBehaviour {
 	//private reference to the character script for making calls to the public api.
 	private PlayerControl character;
-
 	//reference to the camera
 	private Camera mainCamera;
 
@@ -37,23 +37,31 @@ public class ControlsInput : MonoBehaviour {
 	/// </summary>
 	void Update()
 	{
-		//what was the position?
-		//where is our character currently?
-		//Vector3 characterPosition = character.gameObject.transform.position;
-		//vector math says point to get to - current position = heading.
-		if (Input.GetKey (character.moveUp)) {
-			this.heading = new Vector2 (0, character.maxSpeed);
-		} else if (Input.GetKey (character.moveDown)) {
-			this.heading = new Vector2 (0, -character.maxSpeed);
-		} else if (Input.GetKey (character.moveRight)) {
-			this.heading = new Vector2 (character.maxSpeed, 0);
-		} else if (Input.GetKey (character.moveLeft)) {
-			this.heading = new Vector2 (-character.maxSpeed, 0);
-		} else {
-			this.heading = new Vector2 (0, 0);
-		}
-		//make sure we don't surpass 1.
-		//this.heading.Normalize();
+        if (Input.GetKey(character.moveUp))
+        {
+            this.heading = Vector2.up;
+        }
+        else if (Input.GetKey(character.moveDown))
+        {
+            this.heading = Vector2.down;
+        }
+        else if (Input.GetKey(character.moveRight))
+        {
+            this.heading = Vector2.right;
+        }
+        else if (Input.GetKey(character.moveLeft))
+        {
+            this.heading = Vector2.left;
+        }
+        else {
+            this.heading = Vector2.zero;
+        }
+
+        if (Input.GetKey(KeyCode.P))
+        {
+            character.GetComponent<Rigidbody2D>().freezeRotation = false;
+        }
+		
 	}
 
 	/// <summary>
@@ -63,9 +71,9 @@ public class ControlsInput : MonoBehaviour {
 	void FixedUpdate()
 	{
 		//get the x factor of movement.
-		float xMovement = Input.GetAxis("Horizontal");
+		float xMovement = Input.GetAxisRaw("Horizontal");
 		//get the y factor of movement.
-		float yMovement = Input.GetAxis("Vertical");
+		float yMovement = Input.GetAxisRaw("Vertical");
 
 		Vector2 movement = new Vector2(xMovement, yMovement);
 

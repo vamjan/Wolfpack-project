@@ -37,7 +37,7 @@ public class CameraFollow : MonoBehaviour
 		{
 			lookAheadPos = Vector3.MoveTowards(lookAheadPos, Vector3.zero, Time.deltaTime * lookAheadReturnSpeed);
 		}
-		Vector3 aheadTargetPos = target.position + lookAheadPos +Vector3.forward * offsetZ;
+		Vector3 aheadTargetPos = target.position + lookAheadPos + Vector3.forward * offsetZ;
 		Vector3 newPos = Vector3.SmoothDamp(transform.position, aheadTargetPos, ref currentVelocity, damping);
 		transform.position = newPos;
 		lastTargetPosition = target.position;
