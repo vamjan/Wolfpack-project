@@ -1,0 +1,111 @@
+*Avoiding any world building detail I don't need so I don't mess up Zahry´s vision*
+*This is really rough idea list and anything can be changed on a whim*
+*Yeah, all of it is gender neutral. Unless it isn't. If it isn't, pretend it is.*
+
+**The lost captain**
+
+World: There is a legend of a wandering tower. Flying tower hidden in the clouds. Its top is encrusted with diamonds and the biggest ruby anybody has ever seen.  Only way to find it is to follow its victims. Wherever the tower appears people forget. The ruby is an artifact of lost ages that nobody can remember. Whoever approaches it risks loosing all of their memories except the most basic ones. You can never forget who you are. Many lost souls are left wandering the country looking for their families they remembered and loved ones they know they forgot. The wandering ruby claimed their memories for itself.
+
+Captain´s diary, star date: none
+//commence pirate speeeeeek
+We have done it! Me and me hearty crew found the tower. After months of wandering after wandering fools we got here. It looks like ****. Awful place. But the stones are shining up there like brrrand new sun. We going there and we takin the ruby. This wolf is going to get me a brand new ship!!!
+
+-later-
+
+We have it. Now everybody is going to do exactly what I would do. Massacre will start and then, they are going to come for me. I will kill them before they get a chance!!!
+
+
+-later, a note on a tree-
+
+I don't remember much. I know that I have been betrayed and that they left me here to die. I don't know who they are or what they did to me, but I'm getting beck what they took from me. Whatever it was.... I know I kept a diary. I will keep this habit and mark my progress. Preferably on paper when I get one. I will have my memory back.
+
+hook: everybody loves revenge story
+	pirate aesthetics
+	airships? pirate speek
+	Hook for a hand? (used to ride cables and air-rails)
+	Mechanics about vaguely remembering something. You are following a trail of lost memories to get to the ship and you can get lost if you interpret vague memories wrong.
+	Shiny flying crap. I don't know.
+
+
+
+**The falling miner**
+
+Adamantium (Real mythical metal, I'm not stealing from x-men)
+	-recently discovered material
+	-found deeeeeeep underground
+	-extremely light and strong (can be made into textile)
+	
+
+Yet another diary entry because why the heck not
+
+We have dug deeper than ever before. Adamantium is so abundant in these depths! We shouldn't have. I was just leaving main tunnel when they dug thru the adamantine layer. There is something down there. I was knocked out by falling rocks and I don't know what happened then, but I woke up to dead. Floor is covered by blood. The monsters are awful. They are dripping puss wherever they go and the stench is puke-inducing. I believe they are intelligent. They are talking between each other. I think they are...
+
+After a while I discovered why I'm still alive. It seems they cannot see me in dark tunnels. Must be something unusual. I saw how they jumped at a guy totally covered in darkness. Maybe I don't smell as much? I need to get out of here....
+
+hook: scary environment
+	mining and explosives
+	invading scary monsters (with great aesthetics and story and possibility of entering their caves)
+	possible simple goal (get to the surface)
+	mystery (why they not killing him)
+	stem-powered mining equipment
+
+
+
+***The hidden bard***
+
+World: The technology is dependent on one power source. Shja. The shadow. They are caught in the darkest parts of the world and imprisoned in small metal spheres. These spheres then produce incredible amounts of heat indefinitely. Infinite source of fuel.
+
+Story? I guess. Just read on.
+
+Yeah, story.
+
+In ancient time there was a proud and powerful race. They had everything but one thing. Immortality. For years their best engineers toiled on the machine that would help them rule the world forever. When the big day came, all of them gathered in the capital and waited for the machine to activate. When the sun reached zenith, bright light covered all of the lands. It worked. They threw away their mortality. They would roam the lands for all eternity. The payment for this was much steeper than they expected. Their bodies were burned away.
+Even today they roam the world as mere shadows of who they were. Trapped in this world with no way of escaping or changing what they are. You can see them just when the sun goes down. On the edge of your sight. The little shadows playing games on your mind. One day they will escape their tormenting existence and get their bodies back. Well, not necessarily their bodies. Anybody will do when you suffer for so long. When they come back, you will be just like they were. A lost soul left to wander the world for eternity. Never really free, never really in shackles. Alone. Mute. Deaf. Not dead.
+
+-Bard that used to tell this story screaming into camera (not really)-
+
+OK! I never believed that story, but now... I don't know what happened. The shadows came form the forests. They were clear as day. And then the machines halted. Our whole caravan just stopped. More shadows appeared around us and then people started to act weird. Friends were attacking each other. Biting animals and setting anything they saw on fire!!
+I bolted. Away from the forest and the shadows. I never liked those circus people anyway. Gods know how long I will be able to hide. Night is coming and I wont see anything...
+
+hook: enemy is everywhere (sense of tension)
+	everything is lost feeling (seemingly undefeatable enemy)
+	focused on running away, less so on fighting
+	time based goals (you enter town with enemy behind you, before they get there and free other Shadows in there you need to get the supplies to get over desert (get food and go alone / make caravan embark early without telling them what is coming/ steal steam powered camel (if they catch up to you, camel has a shadow inside and not only you will have to escape another shadow but also have to walk the rest of way)))
+
+
+**The soul mates**
+
+You are a character with a soul mate. A soul of dead empress that is bound to you and who is trying really hard to make you revenge her death. She has various powers and after you make a pact with her, she gives them to you. Now you are on a journey for revenge and to get rid of her, because she is ruining your life. (You make the pact because you want something as well. Love, Power, get rid of her, this is just detail.)
+
+hook: Mechanics of two souls. You can use various destructive and useful powers to bash your way into occupied territory and kill the emperor that killed your soul mate.
+	Mechanics? Swaping places with her. You can either walk around and kick ass, or you let her walk and you use magic to bash your enemies skulls in.
+	Dialogs even when nobody is around. Hilarity ensured. Also we wont have to make any NPCs.
+	Spirit walk to explore areas you cannot get to physically.
+
+
+
+**The trapped soldier**
+
+Invasion is happening. You nation finally decided to attack their ancient enemies. Great portal was opened and your army marched thru into distant land. First battles went great, until one where you got wounded and, assumed dead, left behind. Your only chance for survival in this hostile land is to catch up with invading forces and leave with the thru the portal only they can open. If you don't manage to do that, you will be lost here forever. You will never see your family and will soon die to aggressive fauna and flora.
+
+hooks: Fight with time. Fight or run? It is up to the player. Both have some advantage, but you are always under time pressure.
+	Chance to create great and aggressive environment.
+	Chance to visit battlefields after the battle and salvage what you can.
+	Could have stealth feature, so you can steal from locals.
+	You could affect the war. Following your army you encounter enemy squadrons trying to attack your soldiers from behind. Will you try and kill them or will you try to sneak past them and warn your friends? Or will you decide you like it there, build a house and stay there? Who knows.
+
+**The unfortunate gambler**
+
+**The guy bitten by sheep**
+ 
+**The last delivery boy**
+
+**The enlisted gypsy**
+
+**The abducted urchin**
+
+**The under-streets**
+
+**From mechanical chickens**
+
+**The wrong errand**
