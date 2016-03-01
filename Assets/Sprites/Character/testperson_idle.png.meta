@@ -1,9 +1,13 @@
 fileFormatVersion: 2
 guid: 24c7f47ab2761c0409ec3bb44159c69d
-timeCreated: 1456774607
+timeCreated: 1456838065
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: testperson_idle_0
+    21300002: testperson_idle_1
+    21300004: testperson_idle_2
+    21300006: testperson_idle_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -38,18 +42,91 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 156
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: testperson_idle_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 37
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18.5, y: 41}
+        - {x: -18.5, y: -41}
+        - {x: 14.5, y: -41}
+        - {x: 15.5, y: -35}
+        - {x: 18.5, y: -31}
+        - {x: 18.5, y: 41}
+    - name: testperson_idle_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 1
+        width: 37
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 14.5, y: 41}
+        - {x: -16.5, y: 41}
+        - {x: -18.5, y: 39}
+        - {x: -18.5, y: -41}
+        - {x: 13.5, y: -41}
+        - {x: 18.5, y: -30}
+        - {x: 18.5, y: 21}
+    - name: testperson_idle_2
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 1
+        width: 37
+        height: 83
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 10.5, y: 41.5}
+        - {x: -17.5, y: 41.5}
+        - {x: -18.5, y: 39.5}
+        - {x: -18.5, y: -41.5}
+        - {x: 18.5, y: -41.5}
+        - {x: 18.5, y: 29.5}
+        - {x: 15.5, y: 38.5}
+    - name: testperson_idle_3
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 1
+        width: 37
+        height: 83
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13.5, y: 41.5}
+        - {x: -16.5, y: 34.5}
+        - {x: -18.5, y: 19.5}
+        - {x: -18.5, y: -32.5}
+        - {x: -14.5, y: -41.5}
+        - {x: 15.5, y: -41.5}
+        - {x: 18.5, y: -35.5}
+        - {x: 18.5, y: 30.5}
+        - {x: 17.5, y: 41.5}
     outline: []
   spritePackingTag: 
   userData: 
