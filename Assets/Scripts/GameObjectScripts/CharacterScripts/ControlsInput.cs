@@ -3,10 +3,10 @@
 using System.Collections;
 
 //require Character Script to be attached to this object.
-[RequireComponent(typeof(PlayerControl))]
+[RequireComponent(typeof(PlayerCharacter))]
 public class ControlsInput : MonoBehaviour {
 	//private reference to the character script for making calls to the public api.
-	private PlayerControl character;
+	private PlayerCharacter character;
 	//reference to the camera
 	private Camera mainCamera;
 
@@ -27,7 +27,7 @@ public class ControlsInput : MonoBehaviour {
 	private void Start()
 	{
 		//we require a built up version of the character script.
-		this.character = this.GetComponent<PlayerControl>();
+		this.character = this.GetComponent<PlayerCharacter>();
 
 		this.mainCamera = Camera.main;
 	}
@@ -37,25 +37,6 @@ public class ControlsInput : MonoBehaviour {
 	/// </summary>
 	void Update()
 	{
-        if (Input.GetKey(character.moveUp))
-        {
-            this.heading = Vector2.up;
-        }
-        else if (Input.GetKey(character.moveDown))
-        {
-            this.heading = Vector2.down;
-        }
-        else if (Input.GetKey(character.moveRight))
-        {
-            this.heading = Vector2.right;
-        }
-        else if (Input.GetKey(character.moveLeft))
-        {
-            this.heading = Vector2.left;
-        }
-        else {
-            this.heading = Vector2.zero;
-        }
 
         if (Input.GetKey(KeyCode.P))
         {
