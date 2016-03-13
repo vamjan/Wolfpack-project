@@ -15,8 +15,8 @@ public class PlayerCharacter : Character, IControlable, IKillable {
         base.Update();
 
         // Gets information about input axis
-        float inputX = Input.GetAxisRaw("Horizontal");
-        float inputY = Input.GetAxisRaw("Vertical");
+        float inputX = InputWrapper.GetAxisRaw("Horizontal");
+        float inputY = InputWrapper.GetAxisRaw("Vertical");
 
         if (inputX == 0.0 && inputY == 0.0)
         {

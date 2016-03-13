@@ -5,6 +5,7 @@ using System;
 public class Character : MonoBehaviour, IMovable, IAttackable, IScriptable {
     public float damage;
     public float health;
+    public bool isDeath;
 
     public float maxSpeed;
     public Vector2 heading;
