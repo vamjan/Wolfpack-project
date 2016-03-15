@@ -14,4 +14,14 @@ public static class InputWrapper {
 
         return retval;
     }
+
+    public static bool GetButtonDown(string designation)
+    {
+        bool retval = false;
+
+        if (inputEnabled)
+            retval = Input.GetButtonDown(designation);
+
+        return retval;
+    }
 }

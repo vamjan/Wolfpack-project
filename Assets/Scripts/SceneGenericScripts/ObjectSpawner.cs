@@ -6,17 +6,32 @@ using System.Collections.Generic;
 public class ObjectSpawner : MonoBehaviour {
 
     public GameObject spawnerType;
-    public bool persistent;
+    public bool isPersistent;
 
-    void Awake()
+    private LevelManager eventMasterScript;
+
+    void OnEnable()
     {
-        Debug.Log("Spawner active!");
+        SetInitialReference();
+        eventMasterScript.SpawnEvent += Spawn;
     }
 
-    public void spawn()
+    void OnDisable()
     {
+        eventMasterScript.SpawnEvent -= Spawn;
+    }
+
+    private void SetInitialReference()
+    {
+        Debug.Log("Setting reference to gamemaster");
+        eventMasterScript = GameObject.Find("GameManager").GetComponent<LevelManager>();
+    }
+
+    private void Spawn()
+    {
+        Debug.Log("Spawner doing its thing");
         Instantiate(spawnerType, this.GetComponent<Transform>().position, Quaternion.identity);
-        if (!persistent)
+        if (!isPersistent)
             Destroy(this.gameObject);
     }
 }

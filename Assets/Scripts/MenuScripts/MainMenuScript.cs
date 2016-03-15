@@ -2,10 +2,10 @@
 using UnityEngine.SceneManagement;
 using System.Collections;
 
-public class LoadOnClick : MonoBehaviour {
+public class MainMenuScript: MonoBehaviour {
 
     public GameObject loadingImage;
-     
+
     public void LoadScene(int level)
     {
         loadingImage.SetActive(true);

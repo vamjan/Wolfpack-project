@@ -8,24 +8,23 @@ public class GameManager : MonoBehaviour {
     /// 
     /// EVENTS
     /// 
-    /*public delegate void GameManagerEventHandler();
-    public event GameManagerEventHandler MenuToggleEvent;
-    public event GameManagerEventHandler UIToggleEvent;
+    public delegate void GameManagerEventHandler();
+    public event GameManagerEventHandler GameStartEvent;
     public event GameManagerEventHandler GameOverEvent;
-    public event GameManagerEventHandler PauseEvent;
+    public event GameManagerEventHandler MenuToggleEvent;
+    public event GameManagerEventHandler PauseToggleEvent;
 
-    public bool isGameOver;
-    public bool isMenuOn;*/
+    private bool isGameOver;
+    private bool isMenuActive;
+    private bool isPaused;
 
-
+    public GameObject menu;
     //static instance of GameManager, which allows it to be accessed by any other script
     public static GameManager instance = null;
     //private reference to the character script for making calls to the public api.
     private PlayerCharacter character;
     //reference to the camera
     private Camera mainCamera;
-
-    public ObjectSpawner[] spawners;
 
     void GetGameManager()
     {
@@ -41,25 +40,61 @@ public class GameManager : MonoBehaviour {
         DontDestroyOnLoad(this.gameObject);
     }
 
+    void CallGameStartEvent()
+    {
+        isGameOver = false;
+        isPaused = false;
+        isMenuActive = false;
+
+        if (GameStartEvent != null)
+        {
+            GameStartEvent();
+        }
+    }
+
+    public void CallPauseToggleEvent()
+    {
+        isPaused = !isPaused;
+        Time.timeScale = isPaused ? 0.0f : 1.0f;
+
+        if (PauseToggleEvent != null)
+        {
+            PauseToggleEvent();
+        }
+    }
+
+    public void CallMenuToggleEvent()
+    {
+        isMenuActive = !isMenuActive;
+        menu.SetActive(isMenuActive);
+
+        if (MenuToggleEvent != null)
+        {
+            MenuToggleEvent();
+        }
+    }
+
     void Awake()
     {
         GetGameManager();
-        spawners = FindObjectsOfType(typeof(ObjectSpawner)) as ObjectSpawner[];
-        Debug.Log("Manager running");
+        Debug.Log("Game manager running");
     }
 
     // Use this for initialization
     void Start () {
-        foreach(var spawner in spawners)
-        {
-            spawner.spawn();
-        }
-
         InputWrapper.inputEnabled = true;
+        CallGameStartEvent();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        
+
+        if(InputWrapper.GetButtonDown("Cancel"))
+        {
+            CallPauseToggleEvent();
+            CallMenuToggleEvent();
+            Debug.Log("Game is paused: " + isPaused);
+        }
+   
     }
 }
