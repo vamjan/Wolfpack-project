@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour {
     /// 
     public delegate void LevelManagerEventHandler();
     public event LevelManagerEventHandler SpawnEvent;
+    public event LevelManagerEventHandler LevelFinnishedEvent;
 
     public GameObject[] objects; //will be needed
     public Collider2D[] triggers; //maybe
@@ -20,6 +21,19 @@ public class LevelManager : MonoBehaviour {
         {
             SpawnEvent();
         }
+    }
+
+    public void CallLevelFinnishedEvent()
+    {
+        if (LevelFinnishedEvent != null)
+        {
+            LevelFinnishedEvent();
+        }
+    }
+
+    private void LoadNextLevel()
+    {
+
     }
 
     private void SetInitialReference()

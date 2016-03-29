@@ -13,6 +13,7 @@ public class Character : MonoBehaviour, IMovable, IAttackable, IScriptable {
 
     //cached version of our physics rigid body.
     protected Rigidbody2D cachedRigidBody2D;
+    protected Animator anim;
 
     public virtual void DoScriptAttack()
     {
@@ -36,20 +37,31 @@ public class Character : MonoBehaviour, IMovable, IAttackable, IScriptable {
 
     public void Move(Vector2 velocity)
     {
-        this.Turn(velocity);
-        transform.Translate(movement);
-        movement = Vector2.zero;
+        if (velocity.x == 0 && velocity.y == 0)
+        {
+            anim.SetBool("Walking", false);
+        }
+        else
+        {
+            anim.SetBool("Walking", true);
+            this.Turn(velocity);
+            transform.Translate(movement);
+            movement = Vector2.zero;
+        }
     }
 
     public void Turn(Vector2 heading)
     {
-        this.heading = heading.normalized;
-        Debug.Log(this.heading);
+        //this.heading = heading.normalized;
+        float tmp = Vector2.Angle(this.heading, heading);
+
+        anim.SetFloat("MovementX", this.heading.x);
+        anim.SetFloat("MovementY", this.heading.y);
     }
 
     // Use this for initialization
     void Start () {
-        
+        anim = GetComponent<Animator>();
     }
 	
 	// Update is called once per frame
