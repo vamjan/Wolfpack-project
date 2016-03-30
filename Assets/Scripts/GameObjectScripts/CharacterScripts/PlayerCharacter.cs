@@ -4,6 +4,8 @@ using System;
 
 public class PlayerCharacter : Character, IControlable, IKillable {
 
+
+
     public void Die(int time)
     {
         throw new NotImplementedException();
@@ -18,20 +20,24 @@ public class PlayerCharacter : Character, IControlable, IKillable {
         float inputX = InputWrapper.GetAxisRaw("Horizontal");
         float inputY = InputWrapper.GetAxisRaw("Vertical");
 
-        if (inputX == 0.0 && inputY == 0.0)
+        /*if (inputX == 0.0f && inputY == 0.0f)
         {
-
+            if (!idle)
+            {
+                idle = true;
+                anim.SetBool("Walking", idle);
+                Debug.Log(idle);
+            }
         }
         else
-        {
+        {*/
             // Prepare the movement for each direction
-            this.movement = new Vector2(
-                maxSpeed * inputX,
-                maxSpeed * inputY);
+            this.movement = new Vector2(inputX, inputY).normalized;
             // Makes the movement relative to time
+
             movement *= Time.deltaTime;
 
-            Move(movement);
-        }
+            Walk(movement);
+        //}
     }
 }
