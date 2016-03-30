@@ -71,6 +71,15 @@ public class Character : MonoBehaviour, IMovable, IAttackable, IScriptable {
 
         anim.SetFloat("MovementX", this.heading.x);
         anim.SetFloat("MovementY", this.heading.y);
+
+        if(this.heading.x < 0)
+        {
+            this.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            this.GetComponent<SpriteRenderer>().flipX = false;
+        }
     }
 
     // Use this for initialization

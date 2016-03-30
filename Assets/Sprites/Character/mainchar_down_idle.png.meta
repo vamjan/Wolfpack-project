@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: eeb08cc2eb16ec344969bd2086494527
-timeCreated: 1459369371
+guid: 628224a58fa681c4280d41e1168a3d1d
+timeCreated: 1459368923
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: mainchar_horizontal_idle_0
-    21300002: mainchar_horizontal_idle_1
-    21300004: mainchar_horizontal_idle_2
+    21300000: mainchar_down_idle_0
+    21300002: mainchar_down_idle_1
+    21300004: mainchar_down_idle_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -53,57 +53,60 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: mainchar_horizontal_idle_0
+    - name: mainchar_down_idle_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 0
-        width: 60
-        height: 289
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -30, y: 144.5}
-        - {x: -30, y: -144.5}
-        - {x: 30, y: -144.5}
-        - {x: 30, y: 85.5}
-        - {x: 26, y: 144.5}
-    - name: mainchar_horizontal_idle_1
-      rect:
-        serializedVersion: 2
-        x: 61
-        y: 0
-        width: 60
-        height: 290
+        width: 84
+        height: 315
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -14, y: 144}
-        - {x: -30, y: 125}
-        - {x: -30, y: -145}
-        - {x: 30, y: -145}
-        - {x: 30, y: 68}
-        - {x: 22, y: 144}
-    - name: mainchar_horizontal_idle_2
+      - - {x: -36, y: 157.5}
+        - {x: -42, y: 126.5}
+        - {x: -42, y: -127.5}
+        - {x: -34, y: -157.5}
+        - {x: 30, y: -157.5}
+        - {x: 42, y: -112.5}
+        - {x: 42, y: 124.5}
+        - {x: 38, y: 157.5}
+    - name: mainchar_down_idle_1
       rect:
         serializedVersion: 2
-        x: 121
+        x: 85
         y: 0
-        width: 59
-        height: 290
+        width: 84
+        height: 314
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -14.5, y: 142}
-        - {x: -15.5, y: 141}
-        - {x: -29.5, y: 130}
-        - {x: -29.5, y: -145}
-        - {x: 29.5, y: -145}
-        - {x: 29.5, y: 57}
-        - {x: 22.5, y: 142}
+      - - {x: -42, y: 157}
+        - {x: -42, y: -157}
+        - {x: 26, y: -157}
+        - {x: 42, y: -112}
+        - {x: 42, y: 126}
+        - {x: 38, y: 157}
+    - name: mainchar_down_idle_2
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 0
+        width: 83
+        height: 315
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -24.5, y: 156.5}
+        - {x: -41.5, y: 134.5}
+        - {x: -41.5, y: -112.5}
+        - {x: -33.5, y: -157.5}
+        - {x: 41.5, y: -157.5}
+        - {x: 41.5, y: 152.5}
+        - {x: 35.5, y: 156.5}
     outline: []
   spritePackingTag: 
   userData: 
