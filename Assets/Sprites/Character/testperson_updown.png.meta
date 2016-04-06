@@ -1,0 +1,209 @@
+fileFormatVersion: 2
+guid: 9d3a1215af21b9e4aab8c436c4d18c5a
+timeCreated: 1456838206
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: testperson_updown_0
+    21300002: testperson_updown_1
+    21300004: testperson_updown_2
+    21300006: testperson_updown_3
+    21300008: testperson_updown_4
+    21300010: testperson_updown_5
+    21300012: testperson_updown_6
+    21300014: testperson_updown_7
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 312
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: testperson_updown_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 4
+        width: 37
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 10.5, y: 41}
+        - {x: -17.5, y: 41}
+        - {x: -18.5, y: 39}
+        - {x: -18.5, y: -41}
+        - {x: 15.5, y: -41}
+        - {x: 18.5, y: -33}
+        - {x: 18.5, y: 16}
+        - {x: 15.5, y: 38}
+    - name: testperson_updown_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 2
+        width: 37
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17.5, y: 42}
+        - {x: -18.5, y: 33}
+        - {x: -18.5, y: -35}
+        - {x: -13.5, y: -42}
+        - {x: 18.5, y: -42}
+        - {x: 18.5, y: 25}
+        - {x: 14.5, y: 42}
+    - name: testperson_updown_2
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 1
+        width: 37
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17.5, y: 43}
+        - {x: -18.5, y: 28}
+        - {x: -18.5, y: -29}
+        - {x: -15.5, y: -37}
+        - {x: -5.5, y: -43}
+        - {x: 18.5, y: -43}
+        - {x: 18.5, y: 43}
+    - name: testperson_updown_3
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 2
+        width: 37
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15.5, y: 42.5}
+        - {x: -18.5, y: 40.5}
+        - {x: -18.5, y: -42.5}
+        - {x: 15.5, y: -42.5}
+        - {x: 18.5, y: -35.5}
+        - {x: 18.5, y: 30.5}
+        - {x: 17.5, y: 42.5}
+    - name: testperson_updown_4
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 4
+        width: 37
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 10.5, y: 41}
+        - {x: -17.5, y: 41}
+        - {x: -18.5, y: 39}
+        - {x: -18.5, y: -41}
+        - {x: 15.5, y: -41}
+        - {x: 18.5, y: -33}
+        - {x: 18.5, y: 16}
+        - {x: 15.5, y: 38}
+    - name: testperson_updown_5
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 2
+        width: 37
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18.5, y: 42}
+        - {x: -18.5, y: -42}
+        - {x: 18.5, y: -42}
+        - {x: 18.5, y: 32}
+        - {x: 17.5, y: 42}
+    - name: testperson_updown_6
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 1
+        width: 37
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15.5, y: 43}
+        - {x: -18.5, y: 26}
+        - {x: -18.5, y: -31}
+        - {x: -16.5, y: -43}
+        - {x: 18.5, y: -43}
+        - {x: 18.5, y: 42}
+        - {x: 15.5, y: 43}
+    - name: testperson_updown_7
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 2
+        width: 37
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.5, y: 42.5}
+        - {x: -18.5, y: 41.5}
+        - {x: -18.5, y: -42.5}
+        - {x: 14.5, y: -42.5}
+        - {x: 18.5, y: -25.5}
+        - {x: 18.5, y: 27.5}
+        - {x: 14.5, y: 42.5}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
