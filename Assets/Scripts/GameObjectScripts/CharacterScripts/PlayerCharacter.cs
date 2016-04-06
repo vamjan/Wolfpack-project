@@ -4,11 +4,14 @@ using System;
 
 public class PlayerCharacter : Character, IControlable, IKillable {
 
-
-
     public void Die(int time)
     {
         throw new NotImplementedException();
+    }
+
+    public void toggleFreeze()
+    {
+        InputWrapper.inputEnabled = !InputWrapper.inputEnabled;
     }
 
     // Update is called once per frame
@@ -20,24 +23,28 @@ public class PlayerCharacter : Character, IControlable, IKillable {
         float inputX = InputWrapper.GetAxisRaw("Horizontal");
         float inputY = InputWrapper.GetAxisRaw("Vertical");
 
-        /*if (inputX == 0.0f && inputY == 0.0f)
+
+        // Prepare the movement for each direction
+        this.movement = new Vector2(inputX, inputY);
+
+        // Makes the movement relative to time
+        movement *= Time.deltaTime;
+
+        Walk(movement.normalized);
+
+        bool target = InputWrapper.GetButtonDown("Target");
+
+        if(target)
         {
-            if (!idle)
-            {
-                idle = true;
-                anim.SetBool("Walking", idle);
-                Debug.Log(idle);
-            }
+            toggleTarget();
         }
-        else
-        {*/
-            // Prepare the movement for each direction
-            this.movement = new Vector2(inputX, inputY).normalized;
-            // Makes the movement relative to time
 
-            movement *= Time.deltaTime;
+        bool atk = InputWrapper.GetButtonDown("Attack light");
 
-            Walk(movement);
-        //}
+        if(atk)
+        {
+            Debug.Log("Attack");
+            attack();
+        }
     }
 }

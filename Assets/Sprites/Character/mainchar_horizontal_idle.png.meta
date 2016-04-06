@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: eeb08cc2eb16ec344969bd2086494527
-timeCreated: 1459369371
+timeCreated: 1459886032
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -60,15 +60,15 @@ TextureImporter:
         y: 0
         width: 60
         height: 289
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -30, y: 144.5}
-        - {x: -30, y: -144.5}
-        - {x: 30, y: -144.5}
-        - {x: 30, y: 85.5}
-        - {x: 26, y: 144.5}
+      - - {x: -30, y: 289}
+        - {x: -30, y: 0}
+        - {x: 30, y: 0}
+        - {x: 30, y: 230}
+        - {x: 26, y: 289}
     - name: mainchar_horizontal_idle_1
       rect:
         serializedVersion: 2
@@ -76,16 +76,16 @@ TextureImporter:
         y: 0
         width: 60
         height: 290
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -14, y: 144}
-        - {x: -30, y: 125}
-        - {x: -30, y: -145}
-        - {x: 30, y: -145}
-        - {x: 30, y: 68}
-        - {x: 22, y: 144}
+      - - {x: -14, y: 289}
+        - {x: -30, y: 270}
+        - {x: -30, y: 0}
+        - {x: 30, y: 0}
+        - {x: 30, y: 213}
+        - {x: 22, y: 289}
     - name: mainchar_horizontal_idle_2
       rect:
         serializedVersion: 2
@@ -93,19 +93,19 @@ TextureImporter:
         y: 0
         width: 59
         height: 290
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -14.5, y: 142}
-        - {x: -15.5, y: 141}
-        - {x: -29.5, y: 130}
-        - {x: -29.5, y: -145}
-        - {x: 29.5, y: -145}
-        - {x: 29.5, y: 57}
-        - {x: 22.5, y: 142}
+      - - {x: -14.5, y: 287}
+        - {x: -15.5, y: 286}
+        - {x: -29.5, y: 275}
+        - {x: -29.5, y: 0}
+        - {x: 29.5, y: 0}
+        - {x: 29.5, y: 202}
+        - {x: 22.5, y: 287}
     outline: []
   spritePackingTag: 
   userData: 
-  assetBundleName: 
+  assetBundleName: mainchar
   assetBundleVariant: 

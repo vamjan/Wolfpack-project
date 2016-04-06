@@ -6,17 +6,21 @@ public class Character : MonoBehaviour, IMovable, IAttackable, IScriptable {
     public float damage;
     public float health;
     public bool isDead;
-
     public float maxSpeed;
     public float speed;
-    public Vector2 heading;
+    public Vector2 direction;
     public Vector2 movement;
     public bool turnLocked;
     public bool idle;
+    public GameObject target;
 
     //cached version of our physics rigid body.
+    protected Collider2D attackHitbox;
+    protected Collider2D ownHitbox;
     protected Rigidbody2D cachedRigidBody2D;
+    protected SpriteRenderer rendererer;
     protected Animator anim;
+
 
     public virtual void DoScriptAttack()
     {
@@ -35,62 +39,130 @@ public class Character : MonoBehaviour, IMovable, IAttackable, IScriptable {
 
     public virtual void TakeDmg(float dmg)
     {
-        throw new NotImplementedException();
+        health -= dmg;
+        if (health <= 0)
+        {
+            isDead = true;
+        }
     }
 
     public void Walk(Vector2 point)
     {
+        getIsometricVector(ref point);
         Move(point);
+
+        anim.SetBool("Walking", !idle);
+        anim.SetFloat("MovementX", direction.x);
+        anim.SetFloat("MovementY", direction.y);
+
     }
 
-    public void Move(Vector2 velocity)
+    public void Move(Vector2 control)
     {
-        if (velocity.x == 0 && velocity.y == 0)
+        if (control.x == 0 && control.y == 0)
         {
-            idle = false;
-            anim.SetBool("Walking", idle);
-            this.movement = Vector2.zero;
+            idle = true;
+            speed = 0;
+            movement = Vector2.zero;
             cachedRigidBody2D.velocity = movement;
         }
         else
         {
-            idle = true;
-            anim.SetBool("Walking", idle);
-            if (!turnLocked) Turn(velocity);
-            this.movement = velocity * maxSpeed;
+            idle = false;
+            if (!turnLocked) Turn(control);
+            else Turn(this.target.transform.position - this.transform.position);
+            setMoveAngle(control);
+            accelerate(ref speed);
+            movement = control * speed;
             cachedRigidBody2D.velocity = movement;
         }
+
+        this.direction.Normalize();
     }
 
     public void Turn(Vector2 newHeading)
     {
-        float movementAngle = Vector2.Angle(this.heading, newHeading);
-        this.heading = newHeading.normalized;
+        direction = newHeading;
 
-        Debug.Log(movementAngle);
-
-        anim.SetFloat("MovementX", this.heading.x);
-        anim.SetFloat("MovementY", this.heading.y);
-
-        if(this.heading.x < 0)
+        if (direction.x < 0)
         {
-            this.GetComponent<SpriteRenderer>().flipX = true;
+            this.transform.localRotation = Quaternion.Euler(0, 180, 0);
         }
         else
         {
-            this.GetComponent<SpriteRenderer>().flipX = false;
+            this.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
+    }
+
+    private void setMoveAngle(Vector2 newHeading)
+    {
+        float movementAngle = Vector2.Angle(direction, newHeading);
+        anim.SetFloat("MovementAngle", movementAngle);
+    }
+
+    private void getIsometricVector(ref Vector2 control)
+    {
+        if (Math.Abs(control.x) != 1.0f)
+        {
+            control.x = (float)Math.Round(control.x) * 0.866f;
+        }
+
+        if (Math.Abs(control.y) != 1.0f)
+        {
+            control.y = (float)Math.Round(control.y) * 0.5f;
+        }
+    }
+
+    private void lockTarget()
+    {
+        turnLocked = true;
+        this.direction = target.transform.position - this.transform.position;
+    }
+
+    private void releaseTarget()
+    {
+        turnLocked = false;
+    }
+
+    public void toggleTarget()
+    {
+        if (turnLocked) releaseTarget();
+        else lockTarget();
+    }
+
+    private void accelerate(ref float speed)
+    {
+        if (speed < maxSpeed)
+        {
+            speed += (maxSpeed - speed) / 5;
+            speed = Mathf.Ceil(speed);
+        }
+    }
+
+    public void attack()
+    {
+        anim.SetTrigger("Attack");
+        StartCoroutine(pauseMovement(1));
+    }
+
+    private IEnumerator pauseMovement(float time)
+    {
+        cachedRigidBody2D.constraints = RigidbodyConstraints2D.FreezeAll;
+        yield return new WaitForSeconds(time);
+        cachedRigidBody2D.constraints = RigidbodyConstraints2D.None;
     }
 
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
-        cachedRigidBody2D = this.GetComponent<Rigidbody2D>();
+        cachedRigidBody2D = GetComponent<Rigidbody2D>();
+        rendererer = GetComponent<SpriteRenderer>();
+        attackHitbox = GetComponent<Collider2D>();
     }
 	
 	// Update is called once per frame
 	public virtual void Update () {
-        Debug.DrawLine(this.transform.position, this.transform.position + new Vector3(this.heading.x * 20, this.heading.y * 20, 0),
-        Color.red, 0.1f, false);
+        Debug.DrawLine(transform.position, transform.position + new Vector3(direction.x * 20, direction.y * 20, 0),
+        Color.red, 0.0f, false);
     }
 }

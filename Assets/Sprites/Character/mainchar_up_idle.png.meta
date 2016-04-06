@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 715ac273364482248addffa7a8b2cb87
-timeCreated: 1459369488
+timeCreated: 1459886117
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -60,18 +60,18 @@ TextureImporter:
         y: 0
         width: 81
         height: 295
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -39.5, y: 147.5}
-        - {x: -40.5, y: 141.5}
-        - {x: -40.5, y: -98.5}
-        - {x: -23.5, y: -147.5}
-        - {x: 24.5, y: -147.5}
-        - {x: 40.5, y: -112.5}
-        - {x: 40.5, y: 142.5}
-        - {x: 39.5, y: 147.5}
+      - - {x: -39.5, y: 295}
+        - {x: -40.5, y: 289}
+        - {x: -40.5, y: 49}
+        - {x: -23.5, y: 0}
+        - {x: 24.5, y: 0}
+        - {x: 40.5, y: 35}
+        - {x: 40.5, y: 290}
+        - {x: 39.5, y: 295}
     - name: mainchar_up_idle_1
       rect:
         serializedVersion: 2
@@ -79,16 +79,16 @@ TextureImporter:
         y: 0
         width: 81
         height: 295
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -22.5, y: 147.5}
-        - {x: -40.5, y: 120.5}
-        - {x: -40.5, y: -111.5}
-        - {x: -35.5, y: -147.5}
-        - {x: 40.5, y: -147.5}
-        - {x: 40.5, y: 147.5}
+      - - {x: -22.5, y: 295}
+        - {x: -40.5, y: 268}
+        - {x: -40.5, y: 36}
+        - {x: -35.5, y: 0}
+        - {x: 40.5, y: 0}
+        - {x: 40.5, y: 295}
     - name: mainchar_up_idle_2
       rect:
         serializedVersion: 2
@@ -96,20 +96,20 @@ TextureImporter:
         y: 0
         width: 80
         height: 295
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -26, y: 147.5}
-        - {x: -40, y: 126.5}
-        - {x: -40, y: -64.5}
-        - {x: -23, y: -147.5}
-        - {x: 28, y: -147.5}
-        - {x: 40, y: -98.5}
-        - {x: 40, y: 114.5}
-        - {x: 36, y: 147.5}
+      - - {x: -26, y: 295}
+        - {x: -40, y: 274}
+        - {x: -40, y: 83}
+        - {x: -23, y: 0}
+        - {x: 28, y: 0}
+        - {x: 40, y: 49}
+        - {x: 40, y: 262}
+        - {x: 36, y: 295}
     outline: []
   spritePackingTag: 
   userData: 
-  assetBundleName: 
+  assetBundleName: mainchar
   assetBundleVariant: 

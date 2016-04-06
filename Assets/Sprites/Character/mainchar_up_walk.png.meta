@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 80599066fe55c764ab8dce70852ea530
-timeCreated: 1459369506
+timeCreated: 1459886130
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -61,18 +61,18 @@ TextureImporter:
         y: 0
         width: 81
         height: 295
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -39.5, y: 147.5}
-        - {x: -40.5, y: 141.5}
-        - {x: -40.5, y: -98.5}
-        - {x: -23.5, y: -147.5}
-        - {x: 24.5, y: -147.5}
-        - {x: 40.5, y: -112.5}
-        - {x: 40.5, y: 142.5}
-        - {x: 39.5, y: 147.5}
+      - - {x: -39.5, y: 295}
+        - {x: -40.5, y: 289}
+        - {x: -40.5, y: 49}
+        - {x: -23.5, y: 0}
+        - {x: 24.5, y: 0}
+        - {x: 40.5, y: 35}
+        - {x: 40.5, y: 290}
+        - {x: 39.5, y: 295}
     - name: mainchar_up_walk_1
       rect:
         serializedVersion: 2
@@ -80,30 +80,30 @@ TextureImporter:
         y: 0
         width: 76
         height: 295
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 13, y: 147.5}
-        - {x: -38, y: 147.5}
-        - {x: -38, y: -98.5}
-        - {x: -29, y: -130.5}
-        - {x: -4, y: -141.5}
-        - {x: 2, y: -131.5}
-        - {x: 2, y: -120.5}
-        - {x: 1, y: -116.5}
-        - {x: 2, y: -114.5}
-        - {x: 0, y: -110.5}
-        - {x: 1, y: -109.5}
-        - {x: 1, y: -103.5}
-        - {x: 2, y: -117.5}
-        - {x: 2, y: -124.5}
-        - {x: 1, y: -144.5}
-        - {x: 5, y: -147.5}
-        - {x: 34, y: -147.5}
-        - {x: 38, y: -75.5}
-        - {x: 38, y: 108.5}
-        - {x: 20, y: 140.5}
+      - - {x: 13, y: 295}
+        - {x: -38, y: 295}
+        - {x: -38, y: 49}
+        - {x: -29, y: 17}
+        - {x: -4, y: 6}
+        - {x: 2, y: 16}
+        - {x: 2, y: 27}
+        - {x: 1, y: 31}
+        - {x: 2, y: 33}
+        - {x: 0, y: 37}
+        - {x: 1, y: 38}
+        - {x: 1, y: 44}
+        - {x: 2, y: 30}
+        - {x: 2, y: 23}
+        - {x: 1, y: 3}
+        - {x: 5, y: 0}
+        - {x: 34, y: 0}
+        - {x: 38, y: 72}
+        - {x: 38, y: 256}
+        - {x: 20, y: 288}
     - name: mainchar_up_walk_2
       rect:
         serializedVersion: 2
@@ -111,18 +111,18 @@ TextureImporter:
         y: 0
         width: 81
         height: 295
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -39.5, y: 147.5}
-        - {x: -40.5, y: 141.5}
-        - {x: -40.5, y: -98.5}
-        - {x: -23.5, y: -147.5}
-        - {x: 24.5, y: -147.5}
-        - {x: 40.5, y: -112.5}
-        - {x: 40.5, y: 142.5}
-        - {x: 39.5, y: 147.5}
+      - - {x: -39.5, y: 295}
+        - {x: -40.5, y: 289}
+        - {x: -40.5, y: 49}
+        - {x: -23.5, y: 0}
+        - {x: 24.5, y: 0}
+        - {x: 40.5, y: 35}
+        - {x: 40.5, y: 290}
+        - {x: 39.5, y: 295}
     - name: mainchar_up_walk_3
       rect:
         serializedVersion: 2
@@ -130,30 +130,30 @@ TextureImporter:
         y: 0
         width: 75
         height: 295
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 1.5, y: -124.5}
-        - {x: 1.5, y: -119.5}
-        - {x: 1.5, y: -127.5}
-        - {x: 5.5, y: -132.5}
-        - {x: 9.5, y: -134.5}
-        - {x: 25.5, y: -140.5}
-        - {x: 37.5, y: -121.5}
-        - {x: 37.5, y: 128.5}
-        - {x: 31.5, y: 147.5}
-        - {x: -28.5, y: 147.5}
-        - {x: -36.5, y: 140.5}
-        - {x: -37.5, y: 125.5}
-        - {x: -37.5, y: -70.5}
-        - {x: -21.5, y: -147.5}
-        - {x: 0.5, y: -147.5}
-        - {x: 3.5, y: -143.5}
-        - {x: 2.5, y: -129.5}
-        - {x: 0.5, y: -125.5}
+      - - {x: 1.5, y: 23}
+        - {x: 1.5, y: 28}
+        - {x: 1.5, y: 20}
+        - {x: 5.5, y: 15}
+        - {x: 9.5, y: 13}
+        - {x: 25.5, y: 7}
+        - {x: 37.5, y: 26}
+        - {x: 37.5, y: 276}
+        - {x: 31.5, y: 295}
+        - {x: -28.5, y: 295}
+        - {x: -36.5, y: 288}
+        - {x: -37.5, y: 273}
+        - {x: -37.5, y: 77}
+        - {x: -21.5, y: 0}
+        - {x: 0.5, y: 0}
+        - {x: 3.5, y: 4}
+        - {x: 2.5, y: 18}
+        - {x: 0.5, y: 22}
     outline: []
   spritePackingTag: 
   userData: 
-  assetBundleName: 
+  assetBundleName: mainchar
   assetBundleVariant: 
