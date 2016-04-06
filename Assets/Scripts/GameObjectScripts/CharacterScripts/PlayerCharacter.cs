@@ -9,9 +9,21 @@ public class PlayerCharacter : Character, IControlable, IKillable {
         throw new NotImplementedException();
     }
 
-    public void toggleFreeze()
+    private void lockTarget()
     {
-        InputWrapper.inputEnabled = !InputWrapper.inputEnabled;
+        turnLocked = true;
+        this.direction = target.transform.position - this.transform.position;
+    }
+
+    private void releaseTarget()
+    {
+        turnLocked = false;
+    }
+
+    public void toggleTarget()
+    {
+        if (turnLocked) releaseTarget();
+        else lockTarget();
     }
 
     // Update is called once per frame
@@ -43,7 +55,6 @@ public class PlayerCharacter : Character, IControlable, IKillable {
 
         if(atk)
         {
-            Debug.Log("Attack");
             attack();
         }
     }

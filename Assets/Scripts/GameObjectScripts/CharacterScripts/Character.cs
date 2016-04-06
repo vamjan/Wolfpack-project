@@ -3,7 +3,6 @@ using System.Collections;
 using System;
 
 public class Character : MonoBehaviour, IMovable, IAttackable, IScriptable {
-    public float damage;
     public float health;
     public bool isDead;
     public float maxSpeed;
@@ -15,8 +14,8 @@ public class Character : MonoBehaviour, IMovable, IAttackable, IScriptable {
     public GameObject target;
 
     //cached version of our physics rigid body.
-    protected Collider2D attackHitbox;
-    protected Collider2D ownHitbox;
+    public Collider2D attackHitbox;
+    public Collider2D ownHitbox;
     protected Rigidbody2D cachedRigidBody2D;
     protected SpriteRenderer rendererer;
     protected Animator anim;
@@ -113,23 +112,6 @@ public class Character : MonoBehaviour, IMovable, IAttackable, IScriptable {
         }
     }
 
-    private void lockTarget()
-    {
-        turnLocked = true;
-        this.direction = target.transform.position - this.transform.position;
-    }
-
-    private void releaseTarget()
-    {
-        turnLocked = false;
-    }
-
-    public void toggleTarget()
-    {
-        if (turnLocked) releaseTarget();
-        else lockTarget();
-    }
-
     private void accelerate(ref float speed)
     {
         if (speed < maxSpeed)
@@ -157,7 +139,8 @@ public class Character : MonoBehaviour, IMovable, IAttackable, IScriptable {
         anim = GetComponent<Animator>();
         cachedRigidBody2D = GetComponent<Rigidbody2D>();
         rendererer = GetComponent<SpriteRenderer>();
-        attackHitbox = GetComponent<Collider2D>();
+        ownHitbox = GetComponent("Collider") as Collider2D;
+        attackHitbox = GetComponent("Collider 2") as Collider2D;
     }
 	
 	// Update is called once per frame
