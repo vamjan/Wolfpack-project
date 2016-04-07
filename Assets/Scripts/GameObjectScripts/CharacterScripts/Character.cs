@@ -14,8 +14,8 @@ public class Character : MonoBehaviour, IMovable, IAttackable, IScriptable {
     public GameObject target;
 
     //cached version of our physics rigid body.
-    public Collider2D attackHitbox;
-    public Collider2D ownHitbox;
+    protected Collider2D attackHitbox;
+    protected Collider2D ownHitbox;
     protected Rigidbody2D cachedRigidBody2D;
     protected SpriteRenderer rendererer;
     protected Animator anim;
