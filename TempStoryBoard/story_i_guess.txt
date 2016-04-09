@@ -1,5 +1,7 @@
 Story I guess
 
+//Options are for the idiots that are designing the story, not for the players
+
 Ep. 1 -  The run-away train
 
 The MC is having a guard duty. Walking among the tents of temporal military base is used as basic tutorial for movement. Also can serve to show of our awesome graphics.
