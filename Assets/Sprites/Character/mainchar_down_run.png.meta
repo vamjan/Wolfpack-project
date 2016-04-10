@@ -1,11 +1,13 @@
 fileFormatVersion: 2
-guid: d3da7f8adca4b62418f06f6e456c1e2e
-timeCreated: 1460307625
+guid: 4ee6b8471bc729e41b71f91be1a66dab
+timeCreated: 1460307387
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: mainchar_up_idle_0
-    21300002: mainchar_up_idle_1
+    21300000: mainchar_down_run_0
+    21300002: mainchar_down_run_1
+    21300004: mainchar_down_run_2
+    21300006: mainchar_down_run_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -28,8 +30,8 @@ TextureImporter:
   cubemapConvolutionSteps: 7
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
-  maxTextureSize: 2048
+  textureFormat: -3
+  maxTextureSize: 128
   textureSettings:
     filterMode: -1
     aniso: 16
@@ -52,24 +54,46 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: mainchar_up_idle_0
+    - name: mainchar_down_run_0
       rect:
         serializedVersion: 2
         x: 1
         y: 0
-        width: 18
-        height: 65
+        width: 19
+        height: 63
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: mainchar_up_idle_1
+    - name: mainchar_down_run_1
       rect:
         serializedVersion: 2
-        x: 20
+        x: 21
+        y: 0
+        width: 17
+        height: 62
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: mainchar_down_run_2
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 0
+        width: 19
+        height: 62
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: mainchar_down_run_3
+      rect:
+        serializedVersion: 2
+        x: 62
         y: 0
         width: 18
-        height: 64
+        height: 62
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

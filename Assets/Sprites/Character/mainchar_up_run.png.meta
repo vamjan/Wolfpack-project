@@ -1,11 +1,13 @@
 fileFormatVersion: 2
-guid: d3da7f8adca4b62418f06f6e456c1e2e
-timeCreated: 1460307625
+guid: b78db4d75bb06b14088d7b52b22b0b77
+timeCreated: 1460307691
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: mainchar_up_idle_0
-    21300002: mainchar_up_idle_1
+    21300000: mainchar_up_run_0
+    21300002: mainchar_up_run_1
+    21300004: mainchar_up_run_2
+    21300006: mainchar_up_run_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -52,7 +54,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: mainchar_up_idle_0
+    - name: mainchar_up_run_0
       rect:
         serializedVersion: 2
         x: 1
@@ -63,12 +65,34 @@ TextureImporter:
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: mainchar_up_idle_1
+    - name: mainchar_up_run_1
       rect:
         serializedVersion: 2
-        x: 20
+        x: 21
+        y: 0
+        width: 16
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: mainchar_up_run_2
+      rect:
+        serializedVersion: 2
+        x: 39
         y: 0
         width: 18
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: mainchar_up_run_3
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 0
+        width: 15
         height: 64
       alignment: 7
       pivot: {x: 0.5, y: 0}

@@ -1,0 +1,126 @@
+fileFormatVersion: 2
+guid: 66339e33507c9cb4292869393868ff06
+timeCreated: 1460307459
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: mainchar_side_punch_0
+    21300002: mainchar_side_punch_1
+    21300004: mainchar_side_punch_2
+    21300006: mainchar_side_punch_3
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 1
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: mainchar_side_punch_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 0
+        width: 28
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: mainchar_side_punch_1
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 0
+        width: 26
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: mainchar_side_punch_2
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 0
+        width: 39
+        height: 63
+      alignment: 9
+      pivot: {x: 0.41461182, y: 0.0026429698}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 22.83014, y: 54.833492}
+        - {x: 18.83014, y: 62.833492}
+        - {x: -12.169861, y: 62.833492}
+        - {x: -16.16986, y: 36.833492}
+        - {x: -16.16986, y: -0.16650772}
+        - {x: 11.830139, y: -0.16650772}
+        - {x: 11.830139, y: 21.833492}
+        - {x: 22.83014, y: 45.833492}
+    - name: mainchar_side_punch_3
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 0
+        width: 35
+        height: 64
+      alignment: 9
+      pivot: {x: 0.41436812, y: 0.0026016734}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -1.5028839, y: -0.16650772}
+        - {x: 18.497116, y: -0.16650772}
+        - {x: 20.497116, y: 7.8334923}
+        - {x: 20.497116, y: 49.833492}
+        - {x: 12.497116, y: 63.833492}
+        - {x: -4.502884, y: 63.833492}
+        - {x: -11.502884, y: 53.833492}
+        - {x: -14.502884, y: 19.833492}
+        - {x: -14.502884, y: -0.16650772}
+        - {x: -3.502884, y: -0.16650772}
+        - {x: -2.502884, y: 7.8334923}
+        - {x: -2.502884, y: 8.833492}
+        - {x: -2.502884, y: 2.8334923}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

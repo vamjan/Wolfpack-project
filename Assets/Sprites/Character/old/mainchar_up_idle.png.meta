@@ -1,11 +1,12 @@
 fileFormatVersion: 2
-guid: d3da7f8adca4b62418f06f6e456c1e2e
-timeCreated: 1460307625
+guid: 715ac273364482248addffa7a8b2cb87
+timeCreated: 1459886117
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: mainchar_up_idle_0
     21300002: mainchar_up_idle_1
+    21300004: mainchar_up_idle_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -57,25 +58,58 @@ TextureImporter:
         serializedVersion: 2
         x: 1
         y: 0
-        width: 18
-        height: 65
+        width: 81
+        height: 295
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -39.5, y: 295}
+        - {x: -40.5, y: 289}
+        - {x: -40.5, y: 49}
+        - {x: -23.5, y: 0}
+        - {x: 24.5, y: 0}
+        - {x: 40.5, y: 35}
+        - {x: 40.5, y: 290}
+        - {x: 39.5, y: 295}
     - name: mainchar_up_idle_1
       rect:
         serializedVersion: 2
-        x: 20
+        x: 82
         y: 0
-        width: 18
-        height: 64
+        width: 81
+        height: 295
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -22.5, y: 295}
+        - {x: -40.5, y: 268}
+        - {x: -40.5, y: 36}
+        - {x: -35.5, y: 0}
+        - {x: 40.5, y: 0}
+        - {x: 40.5, y: 295}
+    - name: mainchar_up_idle_2
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 0
+        width: 80
+        height: 295
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -26, y: 295}
+        - {x: -40, y: 274}
+        - {x: -40, y: 83}
+        - {x: -23, y: 0}
+        - {x: 28, y: 0}
+        - {x: 40, y: 49}
+        - {x: 40, y: 262}
+        - {x: 36, y: 295}
     outline: []
   spritePackingTag: 
   userData: 
-  assetBundleName: 
+  assetBundleName: mainchar
   assetBundleVariant: 

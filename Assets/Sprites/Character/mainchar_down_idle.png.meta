@@ -1,12 +1,11 @@
 fileFormatVersion: 2
-guid: 628224a58fa681c4280d41e1168a3d1d
-timeCreated: 1459885952
+guid: f94a614962e461d448c69b7f6d436f33
+timeCreated: 1460307271
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: mainchar_down_idle_0
     21300002: mainchar_down_idle_1
-    21300004: mainchar_down_idle_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -29,8 +28,8 @@ TextureImporter:
   cubemapConvolutionSteps: 7
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
-  maxTextureSize: 2048
+  textureFormat: -3
+  maxTextureSize: 128
   textureSettings:
     filterMode: -1
     aniso: 16
@@ -56,59 +55,27 @@ TextureImporter:
     - name: mainchar_down_idle_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1
         y: 0
-        width: 84
-        height: 315
-      alignment: 9
+        width: 15
+        height: 63
+      alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -36, y: 315}
-        - {x: -42, y: 284}
-        - {x: -42, y: 30}
-        - {x: -34, y: 0}
-        - {x: 30, y: 0}
-        - {x: 42, y: 45}
-        - {x: 42, y: 282}
-        - {x: 38, y: 315}
+      outline: []
     - name: mainchar_down_idle_1
       rect:
         serializedVersion: 2
-        x: 85
+        x: 18
         y: 0
-        width: 84
-        height: 314
+        width: 15
+        height: 62
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -42, y: 314}
-        - {x: -42, y: 0}
-        - {x: 26, y: 0}
-        - {x: 42, y: 45}
-        - {x: 42, y: 283}
-        - {x: 38, y: 314}
-    - name: mainchar_down_idle_2
-      rect:
-        serializedVersion: 2
-        x: 170
-        y: 0
-        width: 83
-        height: 315
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -24.5, y: 314}
-        - {x: -41.5, y: 292}
-        - {x: -41.5, y: 45}
-        - {x: -33.5, y: 0}
-        - {x: 41.5, y: 0}
-        - {x: 41.5, y: 310}
-        - {x: 35.5, y: 314}
+      outline: []
     outline: []
   spritePackingTag: 
   userData: 
-  assetBundleName: mainchar
+  assetBundleName: 
   assetBundleVariant: 
