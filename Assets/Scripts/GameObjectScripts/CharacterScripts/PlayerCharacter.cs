@@ -44,6 +44,7 @@ public class PlayerCharacter : Character, IControlable, IKillable {
 
         Walk(movement.normalized);
 
+        //get targeting input from player
         bool target = InputWrapper.GetButtonDown("Target");
 
         if(target)
@@ -51,6 +52,7 @@ public class PlayerCharacter : Character, IControlable, IKillable {
             toggleTarget();
         }
 
+        //get attack input from player
         bool atk = InputWrapper.GetButtonDown("Attack light");
 
         if(atk)

@@ -31,7 +31,7 @@ public class CameraFollow : MonoBehaviour
 		bool updateLookAheadTarget = Mathf.Abs(xMoveDelta) > lookAheadMoveThreshold;
 		if (updateLookAheadTarget)
 		{
-			lookAheadPos = lookAheadFactor *Vector3.right *Mathf.Sign(xMoveDelta);
+			lookAheadPos = lookAheadFactor * Vector3.right * Mathf.Sign(xMoveDelta);
 		}
 		else
 		{
