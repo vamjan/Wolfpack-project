@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: a5b68f863588d5941b035525bcb5be10
-timeCreated: 1460307643
+guid: 237b20420bf04ef41b8ea551798c86ae
+timeCreated: 1460316772
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: mainchar_up_punch1_0
-    21300002: mainchar_up_punch1_1
-    21300004: mainchar_up_punch1_2
-    21300006: mainchar_up_punch1_3
+    21300000: mainchar_up_backstep_0
+    21300002: mainchar_up_backstep_1
+    21300004: mainchar_up_backstep_2
+    21300006: mainchar_up_backstep_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -54,46 +54,46 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: mainchar_up_punch1_0
+    - name: mainchar_up_backstep_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1
-        width: 17
-        height: 65
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: mainchar_up_punch1_1
-      rect:
-        serializedVersion: 2
-        x: 19
+        x: 1
         y: 0
-        width: 19
+        width: 18
         height: 65
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: mainchar_up_punch1_2
+    - name: mainchar_up_backstep_1
       rect:
         serializedVersion: 2
-        x: 39
+        x: 20
         y: 0
-        width: 16
-        height: 66
+        width: 18
+        height: 65
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: mainchar_up_punch1_3
+    - name: mainchar_up_backstep_2
       rect:
         serializedVersion: 2
-        x: 57
-        y: 1
-        width: 17
-        height: 65
+        x: 40
+        y: 0
+        width: 18
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: mainchar_up_backstep_3
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 0
+        width: 18
+        height: 63
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

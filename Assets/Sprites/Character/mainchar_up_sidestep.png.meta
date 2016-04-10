@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: a5b68f863588d5941b035525bcb5be10
-timeCreated: 1460307643
+guid: 6263be0e456d454468e3bd6f708c194f
+timeCreated: 1460316795
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: mainchar_up_punch1_0
-    21300002: mainchar_up_punch1_1
-    21300004: mainchar_up_punch1_2
-    21300006: mainchar_up_punch1_3
+    21300000: mainchar_up_sidestep_0
+    21300002: mainchar_up_sidestep_1
+    21300004: mainchar_up_sidestep_2
+    21300006: mainchar_up_sidestep_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -54,45 +54,45 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: mainchar_up_punch1_0
+    - name: mainchar_up_sidestep_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1
-        width: 17
-        height: 65
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: mainchar_up_punch1_1
-      rect:
-        serializedVersion: 2
-        x: 19
-        y: 0
-        width: 19
-        height: 65
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: mainchar_up_punch1_2
-      rect:
-        serializedVersion: 2
-        x: 39
+        x: 4
         y: 0
         width: 16
-        height: 66
+        height: 65
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: mainchar_up_punch1_3
+    - name: mainchar_up_sidestep_1
       rect:
         serializedVersion: 2
-        x: 57
-        y: 1
-        width: 17
+        x: 22
+        y: 0
+        width: 19
+        height: 63
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: mainchar_up_sidestep_2
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 0
+        width: 19
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: mainchar_up_sidestep_3
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 0
+        width: 19
         height: 65
       alignment: 7
       pivot: {x: 0.5, y: 0}

@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: a5b68f863588d5941b035525bcb5be10
-timeCreated: 1460307643
+guid: 8f0475284001cd449b10dbdcd460c024
+timeCreated: 1460316750
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: mainchar_up_punch1_0
-    21300002: mainchar_up_punch1_1
-    21300004: mainchar_up_punch1_2
-    21300006: mainchar_up_punch1_3
+    21300000: mainchar_down_sidestep_0
+    21300002: mainchar_down_sidestep_1
+    21300004: mainchar_down_sidestep_2
+    21300006: mainchar_down_sidestep_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -54,46 +54,46 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: mainchar_up_punch1_0
+    - name: mainchar_down_sidestep_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1
-        width: 17
-        height: 65
+        x: 5
+        y: 0
+        width: 15
+        height: 63
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: mainchar_up_punch1_1
+    - name: mainchar_down_sidestep_1
       rect:
         serializedVersion: 2
-        x: 19
+        x: 26
+        y: 0
+        width: 15
+        height: 63
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: mainchar_down_sidestep_2
+      rect:
+        serializedVersion: 2
+        x: 44
         y: 0
         width: 19
-        height: 65
+        height: 62
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: mainchar_up_punch1_2
+    - name: mainchar_down_sidestep_3
       rect:
         serializedVersion: 2
-        x: 39
+        x: 68
         y: 0
-        width: 16
-        height: 66
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: mainchar_up_punch1_3
-      rect:
-        serializedVersion: 2
-        x: 57
-        y: 1
-        width: 17
-        height: 65
+        width: 15
+        height: 62
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

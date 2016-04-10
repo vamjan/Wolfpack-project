@@ -30,8 +30,8 @@ TextureImporter:
   cubemapConvolutionSteps: 7
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
-  maxTextureSize: 2048
+  textureFormat: -3
+  maxTextureSize: 256
   textureSettings:
     filterMode: 0
     aniso: 16
@@ -87,14 +87,11 @@ TextureImporter:
       pivot: {x: 0.41461182, y: 0.0026429698}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 22.83014, y: 54.833492}
-        - {x: 18.83014, y: 62.833492}
-        - {x: -12.169861, y: 62.833492}
-        - {x: -16.16986, y: 36.833492}
-        - {x: -16.16986, y: -0.16650772}
-        - {x: 11.830139, y: -0.16650772}
-        - {x: 11.830139, y: 21.833492}
-        - {x: 22.83014, y: 45.833492}
+      - - {x: -6.267578, y: 51.709534}
+        - {x: -13.267578, y: 43.709534}
+        - {x: -13.267578, y: -0.29046822}
+        - {x: 18.732422, y: -0.29046822}
+        - {x: 18.732422, y: 51.709534}
     - name: mainchar_side_punch_3
       rect:
         serializedVersion: 2

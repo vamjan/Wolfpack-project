@@ -124,14 +124,14 @@ public class Character : MonoBehaviour, IMovable, IAttackable, IScriptable {
     public void attack()
     {
         anim.SetTrigger("Attack");
-        StartCoroutine(pauseMovement(1));
+        StartCoroutine(pauseMovement(0.5f));
     }
 
     private IEnumerator pauseMovement(float time)
     {
         cachedRigidBody2D.constraints = RigidbodyConstraints2D.FreezeAll;
         yield return new WaitForSeconds(time);
-        cachedRigidBody2D.constraints = RigidbodyConstraints2D.None;
+        cachedRigidBody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     // Use this for initialization
@@ -139,8 +139,8 @@ public class Character : MonoBehaviour, IMovable, IAttackable, IScriptable {
         anim = GetComponent<Animator>();
         cachedRigidBody2D = GetComponent<Rigidbody2D>();
         rendererer = GetComponent<SpriteRenderer>();
-        ownHitbox = GetComponent("Collider") as Collider2D;
-        attackHitbox = GetComponent("Collider 2") as Collider2D;
+        ownHitbox = GetComponent<Collider2D>();
+        attackHitbox = GetComponentInChildren<Collider2D>();
     }
 	
 	// Update is called once per frame
