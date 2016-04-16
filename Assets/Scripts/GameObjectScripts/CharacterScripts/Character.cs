@@ -34,6 +34,8 @@ public class Character : MonoBehaviour, IMovable, IAttackable, IScriptable {
     //character animator (contains all animations)
     protected Animator anim;
 
+    protected LevelManager levelManager;
+
 
     public virtual void DoScriptAttack()
     {
@@ -93,6 +95,8 @@ public class Character : MonoBehaviour, IMovable, IAttackable, IScriptable {
             accelerate(ref speed);
             movement = control * speed;
             cachedRigidBody2D.velocity = movement;
+
+            rendererer.sortingOrder = levelManager.getLayer(transform.position.y);
         }
 
         direction.Normalize();
@@ -161,6 +165,8 @@ public class Character : MonoBehaviour, IMovable, IAttackable, IScriptable {
         rendererer = GetComponent<SpriteRenderer>();
         ownHitbox = GetComponent<Collider2D>();
         attackHitbox = GetComponentInChildren<Collider2D>();
+
+        levelManager = GameObject.Find("GameManager").GetComponent<LevelManager>();
     }
 	
 	// Update is called once per frame
