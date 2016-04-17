@@ -6,6 +6,6 @@ public class Dummy : NPCharacter {
     public override void TakeDmg(float dmg)
     {
         base.TakeDmg(dmg);
-        anim.SetTrigger("Hit");
+        cachedAnim.SetTrigger("Hit");
     }
 }

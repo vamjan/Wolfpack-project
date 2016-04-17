@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class LevelManager : MonoBehaviour {
 
@@ -14,7 +15,6 @@ public class LevelManager : MonoBehaviour {
     public Collider2D[] triggers; //maybe
 
     private GameManager eventMasterScript;
-    private int offset;
 
     private void CallSpawnEvent()
     {
@@ -34,44 +34,25 @@ public class LevelManager : MonoBehaviour {
 
     private void LoadNextLevel()
     {
-
+        throw new NotImplementedException();
     }
 
     private void SetInitialReference()
     {
         eventMasterScript = GameObject.Find("GameManager").GetComponent<GameManager>();
 
-        var tmp = GameObject.Find("Eye Candy").GetComponent<Transform>();
-
-        Transform north = tmp;
-        Transform south = tmp;
+        var tmp = GameObject.Find("Scenery").GetComponent<Transform>();
 
         foreach (Transform curr in tmp)
         {
-            if (curr.position.y > north.position.y)
-            {
-                north = curr;
-            }
-            if (curr.position.y < south.position.y)
-            {
-                south = curr;
-            }
+            Renderer r = curr.GetComponent<Renderer>();
+            r.sortingOrder = getLayer(curr.position.y);
         }
-
-        offset = Mathf.FloorToInt(north.position.y - south.position.y);
-      
-        foreach (Transform curr in tmp)
-        {
-            curr.GetComponent<Renderer>().sortingOrder = getLayer(curr.position.y);
-        }
-
-        var player = GameObject.Find("Player");
-        player.GetComponent<Renderer>().sortingOrder = getLayer(player.transform.position.y);
     }
 
     public int getLayer(float y)
     {
-        return Mathf.FloorToInt(offset - y);
+        return Mathf.FloorToInt(y/10) * -1;
     }
 
     void Awake()
@@ -84,11 +65,5 @@ public class LevelManager : MonoBehaviour {
     void Start()
     {
         CallSpawnEvent();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

@@ -24,15 +24,15 @@ public class Character : MonoBehaviour, IMovable, IAttackable, IScriptable {
 
     //cached version of important components (for performance reasons)
     //hitbox used for attacking
-    protected Collider2D attackHitbox;
+    protected Collider2D cachedAttackHitbox;
     //hitbox used for collision detection with enviroment and other attack hitboxes
-    protected Collider2D ownHitbox;
+    protected Collider2D cachedOwnHitbox;
     //rigid body used for movement in Unity
     protected Rigidbody2D cachedRigidBody2D;
     //character sprite renderer
-    protected SpriteRenderer rendererer;
+    protected SpriteRenderer cachedRenderer;
     //character animator (contains all animations)
-    protected Animator anim;
+    protected Animator cachedAnim;
 
     protected LevelManager levelManager;
 
@@ -67,9 +67,9 @@ public class Character : MonoBehaviour, IMovable, IAttackable, IScriptable {
         Move(point);                                //move character
 
         //animation control (sending parameters to animator)
-        anim.SetBool("Walking", !idle);
-        anim.SetFloat("MovementX", direction.x);
-        anim.SetFloat("MovementY", direction.y);
+        cachedAnim.SetBool("Walking", !idle);
+        cachedAnim.SetFloat("MovementX", direction.x);
+        cachedAnim.SetFloat("MovementY", direction.y);
 
     }
 
@@ -96,7 +96,7 @@ public class Character : MonoBehaviour, IMovable, IAttackable, IScriptable {
             movement = control * speed;
             cachedRigidBody2D.velocity = movement;
 
-            rendererer.sortingOrder = levelManager.getLayer(transform.position.y);
+            cachedRenderer.sortingOrder = levelManager.getLayer(transform.position.y);
         }
 
         direction.Normalize();
@@ -120,7 +120,7 @@ public class Character : MonoBehaviour, IMovable, IAttackable, IScriptable {
     private void setMoveAngle(Vector2 newHeading)
     {
         float movementAngle = Vector2.Angle(direction, newHeading);
-        anim.SetFloat("MovementAngle", movementAngle);
+        cachedAnim.SetFloat("MovementAngle", movementAngle);
     }
 
     private void getIsometricVector(ref Vector2 control)
@@ -147,7 +147,7 @@ public class Character : MonoBehaviour, IMovable, IAttackable, IScriptable {
 
     public void attack()
     {
-        anim.SetTrigger("Attack");
+        cachedAnim.SetTrigger("Attack");
         StartCoroutine(pauseMovement(0.5f));
     }
 
@@ -160,11 +160,11 @@ public class Character : MonoBehaviour, IMovable, IAttackable, IScriptable {
 
     // Use this for initialization
     void Start () {
-        anim = GetComponent<Animator>();
+        cachedAnim = GetComponent<Animator>();
         cachedRigidBody2D = GetComponent<Rigidbody2D>();
-        rendererer = GetComponent<SpriteRenderer>();
-        ownHitbox = GetComponent<Collider2D>();
-        attackHitbox = GetComponentInChildren<Collider2D>();
+        cachedRenderer = GetComponent<SpriteRenderer>();
+        cachedOwnHitbox = GetComponent<Collider2D>();
+        cachedAttackHitbox = GetComponentInChildren<Collider2D>();
 
         levelManager = GameObject.Find("GameManager").GetComponent<LevelManager>();
     }
