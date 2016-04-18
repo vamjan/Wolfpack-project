@@ -2,27 +2,33 @@
 using System.Collections;
 using UnityEngine.Events;
 
-[System.Serializable]
-public class ColliderEvent : UnityEvent<Collider2D> { }
+namespace Wolfpack
+{
+    /// <summary>
+    /// Generic trigger script. Can be used for any collision based event invokations.
+    /// </summary>
+    [System.Serializable]
+    public class ColliderEvent : UnityEvent<Collider2D> { }
 
-public class TriggerScript : MonoBehaviour
-{ 
-    public ColliderEvent OnEnter;
-    public ColliderEvent OnExit;
-    public ColliderEvent OnStay;
-
-    void OnTriggerEnter2D (Collider2D c)
+    public class TriggerScript : MonoBehaviour
     {
-        OnEnter.Invoke(c);
-    }
+        public ColliderEvent OnEnter;
+        public ColliderEvent OnExit;
+        public ColliderEvent OnStay;
 
-    void OnTriggerStay2D(Collider2D c)
-    {
-        OnStay.Invoke(c);
-    }
+        void OnTriggerEnter2D(Collider2D col)
+        {
+            OnEnter.Invoke(col);
+        }
 
-    void OnTriggerExit2D (Collider2D c)
-    {
-        OnExit.Invoke(c);
+        void OnTriggerStay2D(Collider2D col)
+        {
+            OnStay.Invoke(col);
+        }
+
+        void OnTriggerExit2D(Collider2D col)
+        {
+            OnExit.Invoke(col);
+        }
     }
 }

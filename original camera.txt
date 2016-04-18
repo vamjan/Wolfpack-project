@@ -1,0 +1,16 @@
+// only update lookahead pos if accelerating or changed direction
+            float xMoveDelta = target.transform.position.x - lastTargetPosition.x;
+            bool updateLookAheadTarget = Mathf.Abs(xMoveDelta) > lookAheadMoveThreshold;
+            if (updateLookAheadTarget)
+            {
+                lookAheadPos = lookAheadFactor * Vector3.right * Mathf.Sign(xMoveDelta);
+            }
+            else
+            {
+                lookAheadPos = Vector3.MoveTowards(lookAheadPos, Vector3.zero, Time.deltaTime * lookAheadReturnSpeed);
+            }
+            Vector3 direction = new Vector3(-lookAheadFactor * target.direction.x, -lookAheadFactor * target.direction.y, 1);
+            Vector3 aheadTargetPos = target.transform.position + lookAheadPos + direction * offsetZ;
+            Vector3 newPos = Vector3.SmoothDamp(transform.position, aheadTargetPos, ref currentVelocity, damping);
+            transform.position = newPos;
+            lastTargetPosition = target.transform.position;

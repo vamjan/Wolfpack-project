@@ -2,7 +2,10 @@
 using System.Collections;
 using System;
 
-public class NPCharacter : Character {
-
-
+namespace Wolfpack.Character
+{
+    public class NPCharacter : Character
+    {
+        
+    }
 }

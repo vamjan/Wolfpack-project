@@ -2,13 +2,17 @@
 using UnityEngine.SceneManagement;
 using System.Collections;
 
-public class MainMenuScript: MonoBehaviour {
-
-    public GameObject loadingImage;
-
-    public void LoadScene(int level)
+namespace Wolfpack
+{
+    public class MainMenuScript : MonoBehaviour
     {
-        loadingImage.SetActive(true);
-        SceneManager.LoadScene(level);
+
+        public GameObject loadingImage;
+
+        public void LoadScene(int level)
+        {
+            loadingImage.SetActive(true);
+            SceneManager.LoadScene(level);
+        }
     }
 }
