@@ -12,7 +12,7 @@ namespace Wolfpack
 
     public interface IControlable
     {
-        
+
     }
 
     public interface IMovable

@@ -13,6 +13,7 @@ namespace Wolfpack.Managers
         public Consumable activeItem;
         public int health;
 
+        [SerializeField]
         private PlayerCharacter player = null;
         private List<Consumable> inventory;
 
@@ -31,18 +32,6 @@ namespace Wolfpack.Managers
                 instance = this;
             }
             DontDestroyOnLoad(this.gameObject);
-        }
-
-        public void OnEnable()
-        {
-            player.OnHealthUpdated += UpdateHealth;
-            player.OnItemsUpdated += UpdateItems;
-        }
-
-        public void OnDisable()
-        {
-            player.OnHealthUpdated -= UpdateHealth;
-            player.OnItemsUpdated -= UpdateItems;
         }
 
         private void UpdateHealth(int value)
@@ -71,16 +60,57 @@ namespace Wolfpack.Managers
             player = GameObject.Find("Player").GetComponent<PlayerCharacter>();
         }
 
-        public void Awake()
+        void OnLevelWasLoaded(int level)
         {
-            SetInitialReference();
-            GetPlayerManager();
+            Awake();
         }
 
-        public void Start()
+        void Awake()
+        {
+            Debug.Log("PlayerManager Awake");
+            GetPlayerManager();
+            SetInitialReference();
+            player.OnHealthUpdated += UpdateHealth;
+            player.OnItemsUpdated += UpdateItems;
+        }
+
+        void Start()
         {
             player.SetHealth(health);
             UpdateHealthBar();
+        }
+
+        void Update()
+        {
+            Vector2 movement;
+            // Gets information about input axis
+            float inputX = InputWrapper.GetAxisRaw("Horizontal");
+            float inputY = InputWrapper.GetAxisRaw("Vertical");
+
+
+            // Prepare the movement for each direction
+            movement = new Vector2(inputX, inputY);
+
+            // Makes the movement relative to time
+            movement *= Time.deltaTime;
+
+            player.Walk(movement.normalized);
+
+            //get targeting input from player
+            bool target = InputWrapper.GetButtonDown("Target");
+
+            if (target)
+            {
+                player.ToggleTarget();
+            }
+
+            //get attack input from player
+            bool atk = InputWrapper.GetButtonDown("Attack light");
+
+            if (atk)
+            {
+                player.Attack();
+            }
         }
     }
 }

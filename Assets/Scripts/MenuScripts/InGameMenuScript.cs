@@ -20,6 +20,12 @@ namespace Wolfpack
             manager.CallPauseToggleEvent();
         }
 
+        public void RestartGame()
+        {
+            manager.LoadScene(1);
+            BackToGame();
+        }
+
         void OnEnable()
         {
             manager = GameManager.instance;

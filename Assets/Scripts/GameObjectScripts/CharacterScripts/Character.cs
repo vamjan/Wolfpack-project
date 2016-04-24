@@ -178,7 +178,7 @@ namespace Wolfpack.Character
             }
         }
 
-        protected void Attack()
+        public void Attack()
         {
             cachedAnim.SetTrigger("Attack");
             StartCoroutine(PauseMovement(0.5f));
@@ -189,15 +189,15 @@ namespace Wolfpack.Character
         /// </summary>
         /// <param name="time">Pause time</param>
         /// <returns>IEnumerator - necessary for coroutines</returns>
-        private IEnumerator PauseMovement(float time)
+        protected IEnumerator PauseMovement(float time)
         {
             cachedRigidBody2D.constraints = RigidbodyConstraints2D.FreezeAll;
             yield return new WaitForSeconds(time);
             cachedRigidBody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
-
+       
         // Use this for initialization
-        void Start()
+        void Awake()
         {
             cachedAnim = GetComponent<Animator>();
             cachedRigidBody2D = GetComponent<Rigidbody2D>();
@@ -206,6 +206,11 @@ namespace Wolfpack.Character
             cachedAttackHitbox = GetComponentInChildren<Collider2D>();
 
             levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+        }
+
+        void Start()
+        {
+
         }
 
         // Update is called once per frame

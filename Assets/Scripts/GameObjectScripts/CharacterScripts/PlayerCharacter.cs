@@ -16,9 +16,17 @@ namespace Wolfpack.Character
         public delegate void ItemUpdate(string newItem);
         public event ItemUpdate OnItemsUpdated;
 
+        public delegate void Death();
+        public event Death OnDeath;
+
         public void Die(int time)
         {
-            throw new NotImplementedException();
+            cachedAnim.SetTrigger("Die");
+            StartCoroutine(PauseMovement(time));
+            if (OnDeath != null)
+            {
+                OnDeath();
+            }
         }
 
         public void SetHealth(int value)
@@ -29,6 +37,11 @@ namespace Wolfpack.Character
             {
                 OnHealthUpdated(health);
             }
+
+            if(isDead)
+            {
+                Die(1);
+            }
         }
 
         public override void UpdateHealth(int value)
@@ -37,6 +50,11 @@ namespace Wolfpack.Character
             if (OnHealthUpdated != null)
             {
                 OnHealthUpdated(health);
+            }
+
+            if (isDead)
+            {
+                Die(1);
             }
         }
 
@@ -66,42 +84,6 @@ namespace Wolfpack.Character
         {
             if (turnLocked) ReleaseTarget();
             else LockTarget();
-        }
-
-        // Update is called once per frame
-        public override void Update()
-        {
-
-            base.Update();
-
-            // Gets information about input axis
-            float inputX = InputWrapper.GetAxisRaw("Horizontal");
-            float inputY = InputWrapper.GetAxisRaw("Vertical");
-
-
-            // Prepare the movement for each direction
-            this.movement = new Vector2(inputX, inputY);
-
-            // Makes the movement relative to time
-            movement *= Time.deltaTime;
-
-            Walk(movement.normalized);
-
-            //get targeting input from player
-            bool target = InputWrapper.GetButtonDown("Target");
-
-            if (target)
-            {
-                ToggleTarget();
-            }
-
-            //get attack input from player
-            bool atk = InputWrapper.GetButtonDown("Attack light");
-
-            if (atk)
-            {
-                Attack();
-            }
         }
     }
 }

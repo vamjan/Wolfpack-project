@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.Events;
 using Wolfpack.Character;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Wolfpack.Managers
 {
@@ -32,12 +33,15 @@ namespace Wolfpack.Managers
         private bool isMenuActive;
         private bool isPaused;
 
-        public GameObject menu;
+        [SerializeField]
+        private GameObject menu;
         //static instance of GameManager, which allows it to be accessed by any other script
         public static GameManager instance = null;
         //private reference to the character script for making calls to the public api.
-        private PlayerCharacter character;
+        [SerializeField]
+        private PlayerCharacter player;
         //reference to the camera
+        [SerializeField]
         private Camera mainCamera;
 
         //public GameObject loadingImage;
@@ -58,12 +62,11 @@ namespace Wolfpack.Managers
             else
             {
                 instance = this;
-                Debug.Log("Returning initial instance");
             }
             DontDestroyOnLoad(this.gameObject);
         }
 
-        void CallGameStartEvent()
+        public void CallGameStartEvent()
         {
             isGameOver = false;
             isPaused = false;
@@ -75,7 +78,7 @@ namespace Wolfpack.Managers
             }
         }
 
-        void CallGameOverEvent()
+        public void CallGameOverEvent()
         {
             isGameOver = true;
 
@@ -83,6 +86,8 @@ namespace Wolfpack.Managers
             {
                 GameOverEvent();
             }
+
+            GameOver();
         }
 
         public void CallPauseToggleEvent()
@@ -107,9 +112,36 @@ namespace Wolfpack.Managers
             }
         }
 
+        private void GameOver()
+        {
+            CallMenuToggleEvent();
+            GameObject.Find("InGameMenu/BackButton").SetActive(false);
+            Text text = GameObject.Find("InGameMenu/Wolf").GetComponent<Text>();
+            text.text = "Game Over";
+            
+        }
+
+        private void GameFinished()
+        {
+
+        }
+
+        private void SetInitialReference()
+        {
+            player = GameObject.Find("Player").GetComponent<PlayerCharacter>();
+        }
+
+        void OnLevelWasLoaded(int level)
+        {
+            Awake();
+        }
+
         void Awake()
         {
+            Debug.Log("GameManager Awake");
             GetGameManager();
+            SetInitialReference();
+            player.OnDeath += CallGameOverEvent;
         }
 
         // Use this for initialization
