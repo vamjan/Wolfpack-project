@@ -33,6 +33,7 @@ namespace Wolfpack.Managers
             {
                 LevelFinnishedEvent();
             }
+            LoadNextLevel();
         }
 
         private void LoadNextLevel()
@@ -42,7 +43,7 @@ namespace Wolfpack.Managers
 
         private void SetInitialReference()
         {
-            eventMasterScript = GameObject.Find("GameManager").GetComponent<GameManager>();
+            eventMasterScript = GameManager.instance;
 
             //set intial layering for all scenery elements
             var tmp = GameObject.Find("Scenery").GetComponent<Transform>();

@@ -24,5 +24,10 @@ namespace Wolfpack
         {
             manager = GameManager.instance;
         }
+
+        void Awake()
+        {
+            DontDestroyOnLoad(gameObject);
+        }
     }
 }

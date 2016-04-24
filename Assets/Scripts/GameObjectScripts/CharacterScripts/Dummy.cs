@@ -9,9 +9,9 @@ namespace Wolfpack.Character
     public class Dummy : NPCharacter
     {
 
-        public override void TakeDmg(float dmg)
+        public override void UpdateHealth(int dmg)
         {
-            base.TakeDmg(dmg);
+            base.UpdateHealth(dmg);
             cachedAnim.SetTrigger("Hit");
         }
     }

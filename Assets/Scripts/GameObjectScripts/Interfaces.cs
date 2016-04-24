@@ -23,7 +23,7 @@ namespace Wolfpack
 
     public interface IAttackable
     {
-        void TakeDmg(float dmg);
+        void UpdateHealth(int dmg);
     }
 
     public interface IKillable
@@ -31,14 +31,9 @@ namespace Wolfpack
         void Die(int time);
     }
 
-    public interface ISparable
+    public interface IInteractable
     {
-        void Spare();
-    }
-
-    public interface ITalkable
-    {
-        void Talk(string text);
+        void Interact(string text);
     }
 
     public interface ITakable

@@ -6,7 +6,7 @@ namespace Wolfpack
     public class AttackHitboxScript : MonoBehaviour
     {
 
-        public float damage;
+        public int damage;
 
         void OnTriggerEnter2D(Collider2D col)
         {
@@ -14,7 +14,7 @@ namespace Wolfpack
             Debug.Log("Collider hit something! " + col.ToString());
             if ((tmp = col.gameObject.GetComponent(typeof(IAttackable)) as Component) != null)
             {
-                (tmp as IAttackable).TakeDmg(damage);
+                (tmp as IAttackable).UpdateHealth(damage);
             }
         }
     }

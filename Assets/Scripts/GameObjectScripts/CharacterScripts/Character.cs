@@ -2,6 +2,7 @@
 using System.Collections;
 using System;
 using Wolfpack.Managers;
+using System.ComponentModel;
 
 namespace Wolfpack.Character
 {
@@ -10,10 +11,13 @@ namespace Wolfpack.Character
     /// </summary>
     public class Character : MonoBehaviour, IMovable, IAttackable, IScriptable
     {
+        public int maxHealth;
         //character hit points
-        public float health;
+        [SerializeField]
+        protected int health;
         //when hit points reach zero, character dies
-        public bool isDead;
+        [SerializeField]
+        protected bool isDead;
         //maximum runing speed
         public float maxSpeed;
         //current runing speed (not the same as max speed most of the times
@@ -59,9 +63,21 @@ namespace Wolfpack.Character
             throw new NotImplementedException();
         }
 
-        public virtual void TakeDmg(float dmg)
+        public virtual void UpdateHealth(int value)
         {
-            health -= dmg;
+            ChangeHealth(value);
+        }
+
+        protected void ChangeHealth(int value)
+        {
+            if (health < maxHealth)
+            {
+                health += value;
+                if(health > maxHealth)
+                {
+                    health = maxHealth;
+                }
+            }
             if (health <= 0)
             {
                 isDead = true;
@@ -162,7 +178,7 @@ namespace Wolfpack.Character
             }
         }
 
-        public void Attack()
+        protected void Attack()
         {
             cachedAnim.SetTrigger("Attack");
             StartCoroutine(PauseMovement(0.5f));
@@ -189,7 +205,7 @@ namespace Wolfpack.Character
             cachedOwnHitbox = GetComponent<Collider2D>();
             cachedAttackHitbox = GetComponentInChildren<Collider2D>();
 
-            levelManager = GameObject.Find("GameManager").GetComponent<LevelManager>();
+            levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         }
 
         // Update is called once per frame

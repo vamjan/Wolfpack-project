@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
 using Wolfpack.Character;
+using UnityEngine.SceneManagement;
 
 namespace Wolfpack.Managers
 {
     /// <summary>
     /// Class of Game Manager to take care of game cycle. Also contains events for pausing and unpausing game and for menu control.
     /// Singleton design pattern.
+    /// 
     /// </summary>
     public class GameManager : MonoBehaviour
     {
@@ -38,7 +40,15 @@ namespace Wolfpack.Managers
         //reference to the camera
         private Camera mainCamera;
 
-        void GetGameManager()
+        //public GameObject loadingImage;
+
+        public void LoadScene(int level)
+        {
+            //loadingImage.SetActive(true);
+            SceneManager.LoadScene(level);
+        }
+
+        public void GetGameManager()
         {
             if (instance != null && instance != this)
             {
@@ -48,6 +58,7 @@ namespace Wolfpack.Managers
             else
             {
                 instance = this;
+                Debug.Log("Returning initial instance");
             }
             DontDestroyOnLoad(this.gameObject);
         }
@@ -61,6 +72,16 @@ namespace Wolfpack.Managers
             if (GameStartEvent != null)
             {
                 GameStartEvent();
+            }
+        }
+
+        void CallGameOverEvent()
+        {
+            isGameOver = true;
+
+            if (GameOverEvent != null)
+            {
+                GameOverEvent();
             }
         }
 
@@ -89,7 +110,6 @@ namespace Wolfpack.Managers
         void Awake()
         {
             GetGameManager();
-            Debug.Log("Game manager running");
         }
 
         // Use this for initialization
@@ -107,7 +127,6 @@ namespace Wolfpack.Managers
             {
                 CallPauseToggleEvent();
                 CallMenuToggleEvent();
-                Debug.Log("Game is paused: " + isPaused);
             }
 
         }

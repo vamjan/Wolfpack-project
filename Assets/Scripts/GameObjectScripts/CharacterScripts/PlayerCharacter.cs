@@ -10,9 +10,42 @@ namespace Wolfpack.Character
     public class PlayerCharacter : Character, IControlable, IKillable
     {
 
+        public delegate void HealthUpdate(int newHealth);
+        public event HealthUpdate OnHealthUpdated;
+
+        public delegate void ItemUpdate(string newItem);
+        public event ItemUpdate OnItemsUpdated;
+
         public void Die(int time)
         {
             throw new NotImplementedException();
+        }
+
+        public void SetHealth(int value)
+        {
+            int change = value - health;
+            ChangeHealth(change);
+            if (OnHealthUpdated != null)
+            {
+                OnHealthUpdated(health);
+            }
+        }
+
+        public override void UpdateHealth(int value)
+        {
+            base.UpdateHealth(value);
+            if (OnHealthUpdated != null)
+            {
+                OnHealthUpdated(health);
+            }
+        }
+
+        public void updateInventory(string item)
+        {
+            if(OnItemsUpdated != null)
+            {
+                OnItemsUpdated(item);
+            }
         }
 
         // Lock target to lock direction
