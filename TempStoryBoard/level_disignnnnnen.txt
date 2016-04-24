@@ -1,0 +1,44 @@
+Level disignnnnnen
+
+Level 1 - The camp of ultimate encampment
+
+*** Enter on the right-top, MC standing in the center +- (What to do with all the space around?)
+Player starts in a dead end street of an army camp. All around are tents and maybe a wooden cottage. It is night. Grass? Nobody around.
+A friend arrives. Talks about the map and tells MC (main character) to meet him in front of captains cottage in five minutes.
+Friend leaves.
+MC leaves his guarding post and walks thru the scene away.
+
+*** enter left-bottom, leave right-top
+MC enters the camp. Fires all around. A lot of chit-chat from soldiers. MC maybe talks to some. This is show-off scene + tutorial.
+MC leaves the scene.
+
+*** enter left center, leave into cottage in the center +-
+MC arrives to scene. Friend waiting in front of the cottage. Duologue about friend distracting the captain.
+Friend leaves.
+MC enters cottage thru a window.
+
+*** inside of the cottage, enter bottom-left, leave top-right
+Cottage is dark, wooden, abandoned (sorta looks like it).
+MC passes several rooms (bedroom-corridor-office-corridor-kitchen), inspects some items, maybe picks something up.
+In office there is a little self-dialog about the map.
+Sound at the door!!! Captain coming back.
+MC runs to the kitchen and jumps out of the window.
+
+*** back-alley of storage houses, enter left-bottom, leave top-right
+In the distance there is forest (no idea how to show it)
+MC runs away, followed by dogs and soldiers
+MC looses followers
+MC runs into the forest, looking for meeting place
+
+***forest enter left-center, leave left-bottom
+MC wanders the forest for a while looking for their friend (teach player how to crouch here)
+MC sees fire and goes after it
+lumberjack NPC talking to his kid some spooky story by the fire
+MC listens
+Friend comes into the scene, sends lumberjack+kid away using gun
+
+***camp fire, enter spawn in the center, leave top-center
+MC and friend talk about their plans, leave to the top
+
+***over the village, enter bottom-center, leave right-center
+Talk about the train and how they gonna be rich, leave the scene.
