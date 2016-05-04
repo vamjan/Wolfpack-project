@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Collections.Generic;
 
 namespace Wolfpack.Character
 {
@@ -19,10 +20,36 @@ namespace Wolfpack.Character
         public delegate void Death();
         public event Death OnDeath;
 
-        public void Die(int time)
+        public GameObject FindClosest(List<GameObject> objects)
+        {
+            GameObject retval = null;
+            float minDistance = float.MaxValue;
+
+            foreach (var item in objects)
+            {
+                if (retval == null)
+                {
+                    retval = item;
+                    minDistance = (this.transform.position - item.transform.position).magnitude;
+                }
+                else
+                {
+                    float distance = (this.transform.position - item.transform.position).magnitude;
+                    if (distance < minDistance)
+                    {
+                        retval = item;
+                        minDistance = distance;
+                    }
+                }
+            }
+            return retval;
+        }
+
+        public IEnumerator Die(int time)
         {
             cachedAnim.SetTrigger("Die");
             StartCoroutine(PauseMovement(time));
+            yield return new WaitForSeconds(time);
             if (OnDeath != null)
             {
                 OnDeath();
@@ -32,21 +59,12 @@ namespace Wolfpack.Character
         public void SetHealth(int value)
         {
             int change = value - health;
-            ChangeHealth(change);
-            if (OnHealthUpdated != null)
-            {
-                OnHealthUpdated(health);
-            }
-
-            if(isDead)
-            {
-                Die(1);
-            }
+            UpdateHealth(change);
         }
 
         public override void UpdateHealth(int value)
         {
-            base.UpdateHealth(value);
+            ChangeHealth(value);
             if (OnHealthUpdated != null)
             {
                 OnHealthUpdated(health);
@@ -54,7 +72,7 @@ namespace Wolfpack.Character
 
             if (isDead)
             {
-                Die(1);
+                StartCoroutine(Die(1));
             }
         }
 

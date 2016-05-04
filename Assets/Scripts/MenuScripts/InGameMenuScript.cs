@@ -6,7 +6,6 @@ namespace Wolfpack
 {
     public class InGameMenuScript : MonoBehaviour
     {
-
         private GameManager manager = null;
 
         public void Exit()
@@ -33,7 +32,7 @@ namespace Wolfpack
 
         void Awake()
         {
-            DontDestroyOnLoad(gameObject);
+
         }
     }
 }

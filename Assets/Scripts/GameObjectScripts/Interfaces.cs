@@ -3,6 +3,10 @@ using System.Collections;
 
 namespace Wolfpack
 {
+    public enum ActionType { TAKE, OPEN, INTERACT }
+
+    public enum Target { SELF, ENEMY };
+
     public interface IScriptable
     {
         void DoScriptMove(int x, int y);
@@ -28,16 +32,11 @@ namespace Wolfpack
 
     public interface IKillable
     {
-        void Die(int time);
+        IEnumerator Die(int time);
     }
 
     public interface IInteractable
     {
-        void Interact(string text);
-    }
-
-    public interface ITakable
-    {
-        void Take();
+        void Interact(string text, ActionType type);
     }
 }

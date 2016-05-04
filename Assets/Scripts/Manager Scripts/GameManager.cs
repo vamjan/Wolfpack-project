@@ -48,7 +48,8 @@ namespace Wolfpack.Managers
 
         public void LoadScene(int level)
         {
-            //loadingImage.SetActive(true);
+            Destroy(PlayerManager.instance.gameObject);
+            Destroy(this.gameObject);
             SceneManager.LoadScene(level);
         }
 
@@ -87,7 +88,7 @@ namespace Wolfpack.Managers
                 GameOverEvent();
             }
 
-            GameOver();
+            GameComplete("Game Over!");
         }
 
         public void CallPauseToggleEvent()
@@ -112,41 +113,54 @@ namespace Wolfpack.Managers
             }
         }
 
-        private void GameOver()
+        private void GameComplete(string msg)
         {
+            //if game complete is called before Start() it will break the game and it has to be restarted
+            Debug.Log(msg);
+            CallPauseToggleEvent();
             CallMenuToggleEvent();
             GameObject.Find("InGameMenu/BackButton").SetActive(false);
             Text text = GameObject.Find("InGameMenu/Wolf").GetComponent<Text>();
-            text.text = "Game Over";
-            
-        }
-
-        private void GameFinished()
-        {
-
+            text.text = msg;
         }
 
         private void SetInitialReference()
         {
             player = GameObject.Find("Player").GetComponent<PlayerCharacter>();
+            menu = GameObject.Find("InGameMenu");
         }
 
         void OnLevelWasLoaded(int level)
         {
-            Awake();
+            if (this != instance) return;
+            else SetInitialReference();
+        }
+
+        void OnEnable()
+        {
+            player.OnDeath += CallGameOverEvent;
+        }
+
+        void OnDisable()
+        {
+            //not necessary
+            /*
+            player.OnDeath -= CallGameOverEvent;
+            */
         }
 
         void Awake()
         {
-            Debug.Log("GameManager Awake");
             GetGameManager();
+            Debug.Log("GameManager Awake");
             SetInitialReference();
-            player.OnDeath += CallGameOverEvent;
         }
 
         // Use this for initialization
         void Start()
         {
+            Debug.Log("GameManager Start");
+            menu.SetActive(false);
             InputWrapper.inputEnabled = true;
             CallGameStartEvent();
         }

@@ -6,10 +6,11 @@ namespace Wolfpack.Character
 {
     public class NPCharacter : Character, IKillable
     {
-        public void Die(int time)
+        public IEnumerator Die(int time)
         {
             cachedAnim.SetTrigger("Die");
             StartCoroutine(PauseMovement(time));
+            yield return new WaitForSeconds(time);
         }
     }
 }

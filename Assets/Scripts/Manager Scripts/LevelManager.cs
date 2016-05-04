@@ -63,12 +63,13 @@ namespace Wolfpack.Managers
         void Awake()
         {
             SetInitialReference();
-            Debug.Log("Level manager running");
+            Debug.Log("LevelManager Awake");
         }
 
         // Use this for initialization
         void Start()
         {
+            Debug.Log("LevelManager Start");
             CallSpawnEvent();
         }
     }
