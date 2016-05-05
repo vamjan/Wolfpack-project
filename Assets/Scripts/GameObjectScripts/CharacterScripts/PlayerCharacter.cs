@@ -20,6 +20,29 @@ namespace Wolfpack.Character
         public delegate void Death();
         public event Death OnDeath;
 
+        [SerializeField]
+        private List<GameObject> interactables = new List<GameObject>();
+
+        public void AddInteratable(GameObject obj)
+        {
+            /*if ((tmp = col.gameObject.GetComponent(typeof(IAttackable)) as Component) != null)
+            {
+                (tmp as IAttackable).UpdateHealth(damage);
+            }
+
+            if ()*/
+            interactables.Add(obj);
+        }
+
+        public void Interact()
+        {
+            IInteractable obj = FindClosest(interactables).GetComponent<IInteractable>();
+            if(obj != null)
+            {
+                obj.Interact();
+            }
+        }
+
         public GameObject FindClosest(List<GameObject> objects)
         {
             GameObject retval = null;

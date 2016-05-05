@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Collections.Generic;
 
 namespace Wolfpack.Managers
 {
@@ -16,6 +17,7 @@ namespace Wolfpack.Managers
 
         public GameObject[] objects;  //will be needed
         public Collider2D[] triggers; //maybe
+        public List<GameObject> Targetables = new List<GameObject>();
 
         private GameManager eventMasterScript;
 
@@ -53,6 +55,8 @@ namespace Wolfpack.Managers
                 Renderer r = curr.GetComponent<Renderer>();
                 r.sortingOrder = GetLayer(curr.position.y);
             }
+
+
         }
 
         public int GetLayer(float y)

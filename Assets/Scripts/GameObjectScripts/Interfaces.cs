@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace Wolfpack
 {
-    public enum ActionType { TAKE, OPEN, INTERACT }
+    public enum ActionType { TAKE, USE, INTERACT }
 
     public enum Target { SELF, ENEMY };
 
@@ -37,6 +37,6 @@ namespace Wolfpack
 
     public interface IInteractable
     {
-        void Interact(string text, ActionType type);
+        void Interact();
     }
 }

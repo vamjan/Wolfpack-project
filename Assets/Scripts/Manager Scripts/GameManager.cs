@@ -169,7 +169,7 @@ namespace Wolfpack.Managers
         void Update()
         {
 
-            if (InputWrapper.GetButtonDown("Cancel"))
+            if (InputWrapper.GetButtonDown("Pause"))
             {
                 CallPauseToggleEvent();
                 CallMenuToggleEvent();

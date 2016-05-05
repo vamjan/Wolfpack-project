@@ -20,26 +20,13 @@ namespace Wolfpack.Managers
         private Image healthContent;
         private Image itemContent;
         private Text itemCount;
+        private bool inCombat = true;
 
         [SerializeField]
         private PlayerCharacter player = null;
 
         [SerializeField]
         private int active = 0;
-
-        [SerializeField]
-        private List<GameObject> interactables = new List<GameObject>();
-
-        public void AddInteratable(GameObject obj)
-        {
-            /*if ((tmp = col.gameObject.GetComponent(typeof(IAttackable)) as Component) != null)
-            {
-                (tmp as IAttackable).UpdateHealth(damage);
-            }
-
-            if ()*/
-            interactables.Add(obj);
-        }
 
         private void UpdateHealth(int value)
         {
@@ -207,7 +194,8 @@ namespace Wolfpack.Managers
 
             if (atk)
             {
-                player.Attack();
+                if (inCombat) player.Attack();
+                else player.Interact();
             }
 
             bool toggleItem = InputWrapper.GetButtonDown("Toggle item");
