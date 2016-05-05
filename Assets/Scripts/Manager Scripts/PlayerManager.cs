@@ -17,8 +17,11 @@ namespace Wolfpack.Managers
 
         private Dictionary<Consumable, int> inventory = new Dictionary<Consumable, int>();
 
+        [SerializeField]
         private Image healthContent;
+        [SerializeField]
         private Image itemContent;
+        [SerializeField]
         private Text itemCount;
         private bool inCombat = true;
 
