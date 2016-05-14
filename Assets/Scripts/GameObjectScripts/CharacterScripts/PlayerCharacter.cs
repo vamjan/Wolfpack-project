@@ -3,7 +3,7 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 
-namespace Wolfpack.Character
+namespace Wolfpack.Characters
 {
     /// <summary>
     /// Script that controls the player input and controls the player character ingame.
@@ -14,7 +14,7 @@ namespace Wolfpack.Character
         public delegate void HealthUpdate(int newHealth);
         public event HealthUpdate OnHealthUpdated;
 
-        public delegate void ItemUpdate(string newItem);
+		public delegate void ItemUpdate(string newItem, int count);
         public event ItemUpdate OnItemsUpdated;
 
         public delegate void Death();
@@ -23,24 +23,29 @@ namespace Wolfpack.Character
         [SerializeField]
         private List<GameObject> interactables = new List<GameObject>();
 
-        public void AddInteratable(GameObject obj)
+        public void AddInteractable(GameObject obj)
         {
-            /*if ((tmp = col.gameObject.GetComponent(typeof(IAttackable)) as Component) != null)
-            {
-                (tmp as IAttackable).UpdateHealth(damage);
-            }
-
-            if ()*/
             interactables.Add(obj);
+			obj.GetComponent<SpriteRenderer>().material.color = Color.green;
         }
+
+		public void RemoveInteractable(GameObject obj) 
+		{
+			interactables.Remove(obj);
+			obj.GetComponent<SpriteRenderer>().material.color = Color.white;
+		}
+
 
         public void Interact()
         {
-            IInteractable obj = FindClosest(interactables).GetComponent<IInteractable>();
-            if(obj != null)
-            {
-                obj.Interact();
-            }
+			GameObject tmp;
+			if ((tmp = FindClosest(interactables)) != null) {
+				IInteractable obj = tmp.GetComponent<IInteractable>();
+				if(obj != null)
+				{
+					obj.Interact(this);
+				}
+			} 
         }
 
         public GameObject FindClosest(List<GameObject> objects)
@@ -99,11 +104,11 @@ namespace Wolfpack.Character
             }
         }
 
-        public void updateInventory(string item)
+		public void UpdateInventory(string item, int count)
         {
             if(OnItemsUpdated != null)
             {
-                OnItemsUpdated(item);
+                OnItemsUpdated(item, count);
             }
         }
 

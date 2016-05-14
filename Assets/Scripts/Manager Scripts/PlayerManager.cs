@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Wolfpack.Character;
+using Wolfpack.Characters;
 using System.Collections.Generic;
 using System;
 using UnityEngine.UI;
@@ -47,18 +47,27 @@ namespace Wolfpack.Managers
             return (float)health / player.maxHealth;
         }
 
-        private void UpdateItems(string item)
+        private void UpdateItems(string item, int count)
         {
-            throw new NotImplementedException();
+			Knife tmp = new Knife() { name = item };
+			if (inventory.ContainsKey(tmp)) {
+				inventory[tmp] += count;
+
+				//reset consumable view
+				itemCount.text = inventory[tmp].ToString();
+			} else {
+				Debug.Log("Item - " + item + " - not found");
+			}
         }
 
         private void ToggleItem()
         {
-            if (inputInventory.Length != 0)
+			if (inventory.Count != 0)
             {
-                active = (active + 1) % inputInventory.Length;
-                itemContent.sprite = inputInventory[active].icon;
-                itemCount.text = inputInventory[active].count.ToString();
+				active = (active + 1) % inventory.Count;
+				Consumable tmp = inventory.ElementAt(active).Key;
+				itemContent.sprite = tmp.icon;
+				itemCount.text = inventory[tmp].ToString();
             }
             else
             {
@@ -70,15 +79,21 @@ namespace Wolfpack.Managers
         private void UseItem()
         {
             Consumable tmp = inventory.Keys.ElementAt(active);
-            switch(tmp.type)
-            {
-                case Target.SELF:
-                    tmp.Use(player.gameObject);
-                    break;
-                case Target.ENEMY:
-                    tmp.Use(player.target.gameObject);
-                    break;
-            }
+			if (inventory[tmp] > 0) {
+				switch (tmp.type) {
+					case Target.SELF:
+						tmp.Use(player.gameObject);
+						break;
+					case Target.ENEMY:
+						tmp.Use(player.gameObject);
+						break;
+					default:
+						Debug.Log("Targeting policy " + tmp.type + " is invalid");
+						break;
+				}
+				inventory[tmp]--;
+				itemCount.text = inventory[tmp].ToString();
+			}
         }
 
         private void InitializeInventory()
@@ -94,7 +109,8 @@ namespace Wolfpack.Managers
                             damage = item.damage,
                             icon = item.icon,
                             speed = item.speed,
-                            type = item.type
+                            type = item.type,
+							knifePrefab = item.prefab
                         }, item.count);
                         break;
                     case "Potion":
@@ -190,6 +206,11 @@ namespace Wolfpack.Managers
             if (target)
             {
                 player.ToggleTarget();
+				if (player.target != null) {
+					inCombat = true;
+				} else {
+					inCombat = false;
+				}
             }
 
             //get attack input from player
@@ -197,8 +218,7 @@ namespace Wolfpack.Managers
 
             if (atk)
             {
-                if (inCombat) player.Attack();
-                else player.Interact();
+                player.Attack();
             }
 
             bool toggleItem = InputWrapper.GetButtonDown("Toggle item");
@@ -212,7 +232,8 @@ namespace Wolfpack.Managers
 
             if(useItem)
             {
-                UseItem();
+				if (inCombat) UseItem();
+				else player.Interact();
             }
         }
     }

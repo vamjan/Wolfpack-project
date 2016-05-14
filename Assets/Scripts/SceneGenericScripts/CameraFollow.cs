@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 using System.Collections;
-using Wolfpack.Character;
+using Wolfpack.Characters;
 
 namespace Wolfpack
 {

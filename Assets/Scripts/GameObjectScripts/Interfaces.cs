@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Wolfpack.Characters;
 
 namespace Wolfpack
 {
     public enum ActionType { TAKE, USE, INTERACT }
 
     public enum Target { SELF, ENEMY };
+
+	public enum PotionEffect { HEAL = 0, BUFF = 1 }
 
     public interface IScriptable
     {
@@ -37,6 +40,6 @@ namespace Wolfpack
 
     public interface IInteractable
     {
-        void Interact();
+        void Interact(PlayerCharacter player);
     }
 }

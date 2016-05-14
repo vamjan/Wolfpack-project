@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Wolfpack.Managers;
 
 public class DialogBoxScript : MonoBehaviour {
 
@@ -20,21 +21,15 @@ public class DialogBoxScript : MonoBehaviour {
         {
             Debug.Log("DialogBox Error! Reference is missing!");
         }
-
-        if(textContent == null)
-        {
-            textContent = new string[] { "text text text text text text text text text text text text text text text text text",
-            "moar text moar text moar text moar text moar text moar text"};
-        }
     }
 
     public void ToggleTextContent()
-    {
+	{
         if(textIndex < textContent.Length)
         {
             text.text = textContent[textIndex++];
-        } else
-        {
+        } else {
+			GameManager.instance.CallPauseToggleEvent();
             Destroy(this.gameObject);
         }
     }
@@ -46,6 +41,7 @@ public class DialogBoxScript : MonoBehaviour {
 
     public void Start()
     {
+		GameManager.instance.CallPauseToggleEvent();
         ToggleTextContent();
     }
 }

@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Wolfpack.Character;
+using Wolfpack.Characters;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using System;
+using Wolfpack.Managers;
 
 namespace Wolfpack
 {
@@ -16,6 +17,7 @@ namespace Wolfpack
         public int speed;
         public Sprite icon;
         public Target type;
+		public GameObject prefab;
     }
 
     public abstract class Consumable
@@ -34,17 +36,25 @@ namespace Wolfpack
             return this.name.GetHashCode();
         }
 
+		public override string ToString()
+		{
+			return this.name;
+		}
+
+
         public abstract void Use(GameObject target);
     }
 
     public class Knife : Consumable
     {
         public int damage;
-        public int speed;
+        public float speed;
+		public int timeToLive = 100;
+		public GameObject knifePrefab;
 
         public override void Use(GameObject target)
         {
-            throw new NotImplementedException();
+			target.GetComponent<Character>().Shoot(knifePrefab, damage, speed, timeToLive);
         }
     }
 
@@ -52,9 +62,11 @@ namespace Wolfpack
     {
         public int damage;
 
+		//TODO: more potion effects, only healing considered so far
+
         public override void Use(GameObject target)
         {
-            throw new NotImplementedException();
+			target.GetComponent<Character>().DrinkPotion(damage);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Wolfpack
 
         public int damage;
 
-        void OnTriggerEnter2D(Collider2D col)
+        public virtual void OnTriggerEnter2D(Collider2D col)
         {
             Component tmp;
             Debug.Log("Collider hit something! " + col.ToString());

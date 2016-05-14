@@ -4,7 +4,7 @@ using System;
 using Wolfpack.Managers;
 using System.ComponentModel;
 
-namespace Wolfpack.Character
+namespace Wolfpack.Characters
 {
     /// <summary>
     /// Base character script. Contains all generic functions and variables which all game characters might need.
@@ -14,7 +14,7 @@ namespace Wolfpack.Character
         public int maxHealth;
         //character hit points
         [SerializeField]
-        protected int health;
+        public int health;
         //when hit points reach zero, character dies
         [SerializeField]
         protected bool isDead;
@@ -84,6 +84,12 @@ namespace Wolfpack.Character
             }
         }
 
+		public void DrinkPotion(int health, int effect = 0) {
+			//only healing potions implemented so far
+			if(health != maxHealth)
+				UpdateHealth(health);
+		}
+			
         public void Walk(Vector2 point)
         {
             GetIsometricVector(ref point);              //get isometric vector instead of 45 degree variations
@@ -171,12 +177,35 @@ namespace Wolfpack.Character
 
         private void Accelerate(ref float speed)
         {
+			//TODO: check if accel is linked with framerate
             if (speed < maxSpeed)
             {
                 speed += (maxSpeed - speed) / 5;
                 speed = Mathf.Ceil(speed);
             }
         }
+
+		public void Shoot(GameObject projectilePrefab, int damage, float velocity, int timeToLive) {
+			Vector3 tmpTarget = (target == null) ? (Vector3)direction : target.transform.position.normalized;
+			Debug.Log(direction);
+			//TODO: start animation
+			StartCoroutine(PauseMovement(0.2f)); //until end of animation
+			CreateProjectile(projectilePrefab, damage, velocity, timeToLive, tmpTarget);
+			StartCoroutine(PauseMovement(0.2f)); //backswing
+		}
+
+		public void CreateProjectile(GameObject projectilePrefab, int damage, float velocity, int timeToLive, Vector3 projectileTarget) {
+			//TODO: magic number, transform will be added to character so projectiles can't hit their user
+			GameObject projectile = (GameObject)Instantiate(projectilePrefab, transform.position + (Vector3)direction * 20, transform.rotation);
+			//unity does not like NEW, so I have to initialize controler script like this :(
+
+			Projectile projectilController = projectile.AddComponent<Projectile>();
+			projectilController.velocity = velocity;
+			projectilController.damage = damage;
+			projectilController.timeToLive = timeToLive;
+
+			projectile.GetComponent<Rigidbody2D>().velocity = projectileTarget * velocity;
+		}
 
         public void Attack()
         {
@@ -192,8 +221,10 @@ namespace Wolfpack.Character
         protected IEnumerator PauseMovement(float time)
         {
             cachedRigidBody2D.constraints = RigidbodyConstraints2D.FreezeAll;
+			InputWrapper.inputEnabled = false;
             yield return new WaitForSeconds(time);
             cachedRigidBody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
+			InputWrapper.inputEnabled = true;
         }
        
         // Use this for initialization

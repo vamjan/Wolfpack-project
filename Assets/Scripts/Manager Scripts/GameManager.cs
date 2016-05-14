@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
-using Wolfpack.Character;
+using Wolfpack.Characters;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 

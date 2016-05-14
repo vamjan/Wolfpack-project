@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-namespace Wolfpack.Character
+namespace Wolfpack.Characters
 {
     public class NPCharacter : Character, IKillable
     {

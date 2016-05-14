@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace Wolfpack.Character
+namespace Wolfpack.Characters
 {
     /// <summary>
     /// Simple dummy script which triggers dummy animations when attacked
