@@ -9,7 +9,7 @@ namespace Wolfpack
     /// Spawner script used to spawn gameobjects while the game is running.
     /// </summary>
     [System.Serializable]
-    public class ObjectSpawner : MonoBehaviour
+    public class ObjectSpawnerScript : MonoBehaviour
     {
 
         public GameObject spawnerType;
@@ -30,19 +30,25 @@ namespace Wolfpack
             eventMasterScript.SpawnEvent -= Spawn;
         }
 
-        //set reference to event manager
+		/// <summary>
+		/// Set initial references to neccesary objects and validate data.
+		/// </summary>
         private void SetInitialReference()
         {
             Debug.Log("Setting reference to gamemaster");
-            eventMasterScript = GameObject.Find("GameManager").GetComponent<LevelManager>();
+            eventMasterScript = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         }
 
-        //spawn an object
+		/// <summary>
+		/// Spawn NPC into NPCs gameobject.
+		/// Creates new object from prefab.
+		/// </summary>
         private void Spawn()
         {
             Debug.Log("Spawner doing its thing");
             //create new instace of given object
-            Instantiate(spawnerType, this.GetComponent<Transform>().position, Quaternion.identity);
+			var obj = (GameObject)Instantiate(spawnerType, this.GetComponent<Transform>().position, Quaternion.identity);
+			obj.transform.parent = GameObject.Find("NPCs").transform;
             if (!isPersistent)
                 Destroy(this.gameObject);
         }

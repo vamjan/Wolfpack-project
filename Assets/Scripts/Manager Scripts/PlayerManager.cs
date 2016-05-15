@@ -8,58 +8,88 @@ using System.Linq;
 
 namespace Wolfpack.Managers
 {
+	/// <summary>
+	/// Class of Player Manager to take care of player invetory and user input.
+	/// Singleton design pattern.
+	/// </summary>
     public class PlayerManager : MonoBehaviour
     {
+		//static instance of PlayerManager, which allows it to be accessed by any other script
         public static PlayerManager instance = null;
+		//players actual health
         public int health;
-
+		//input inventory used for initialization of actual inventory at the start of the game (Unity does not like abstract classes). Setup in UnityEditor.
         public CountedConsumables[] inputInventory;
-
+		//inventory that is used to access items
         private Dictionary<Consumable, int> inventory = new Dictionary<Consumable, int>();
 
+		//health hub slider
         [SerializeField]
-        private Image healthContent;
+        private Image healthContent = null;
+		//item content image
         [SerializeField]
-        private Image itemContent;
+		private Image itemContent = null;
+		//itm count label
         [SerializeField]
-        private Text itemCount;
-        private bool inCombat = true;
-
+		private Text itemCount = null;
+		//reference to player
         [SerializeField]
-        private PlayerCharacter player = null;
-
+        private PlayerCharacterScript player = null;
+		//index of active item from inevntory
         [SerializeField]
         private int active = 0;
 
+		/// <summary>
+		/// Updates the health value.
+		/// </summary>
+		/// <param name="value">Value.</param>
         private void UpdateHealth(int value)
         {
             health = value;
             UpdateHealthBar();
         }
 
+		/// <summary>
+		/// Updates the health on GUI.
+		/// </summary>
         private void UpdateHealthBar()
         {
             healthContent.fillAmount = MapAmount();
         }
 
+		/// <summary>
+		/// Maps the health amount to GUI.
+		/// </summary>
+		/// <returns>Fill value</returns>
         private float MapAmount()
         {
             return (float)health / player.maxHealth;
         }
 
+		/// <summary>
+		/// Updates the items in the inventory.
+		/// Used for picking up items.
+		/// </summary>
+		/// <param name="item">Item</param>
+		/// <param name="count">Count</param>
         private void UpdateItems(string item, int count)
         {
-			Knife tmp = new Knife() { name = item };
+			Knife tmp = new Knife() { name = item }; //using consumable GetHashCode and Equals to update inventory
 			if (inventory.ContainsKey(tmp)) {
 				inventory[tmp] += count;
 
 				//reset consumable view
-				itemCount.text = inventory[tmp].ToString();
+				if(inventory.ElementAt(active).Key.Equals(tmp))
+					itemCount.text = inventory[tmp].ToString();
 			} else {
 				Debug.Log("Item - " + item + " - not found");
 			}
         }
 
+		/// <summary>
+		/// Toggles the item player is using.
+		/// Redraw GUI.
+		/// </summary>
         private void ToggleItem()
         {
 			if (inventory.Count != 0)
@@ -76,11 +106,14 @@ namespace Wolfpack.Managers
             
         }
 
+		/// <summary>
+		/// Use item on index given by active.
+		/// </summary>
         private void UseItem()
         {
             Consumable tmp = inventory.Keys.ElementAt(active);
 			if (inventory[tmp] > 0) {
-				switch (tmp.type) {
+				switch (tmp.type) { //might be unneccesary now, but will be neede when more items come
 					case Target.SELF:
 						tmp.Use(player.gameObject);
 						break;
@@ -96,6 +129,9 @@ namespace Wolfpack.Managers
 			}
         }
 
+		/// <summary>
+		/// Initializes the inventory from inputInventory.
+		/// </summary>
         private void InitializeInventory()
         {
             foreach(var item in inputInventory)
@@ -129,15 +165,23 @@ namespace Wolfpack.Managers
             }
         }
 
+		/// <summary>
+		/// Set initial references to neccesary objects and validate data.
+		/// </summary>
         private void SetInitialReference()
         {
-            player = GameObject.Find("Player").GetComponent<PlayerCharacter>();
+            player = GameObject.Find("Player").GetComponent<PlayerCharacterScript>();
         }
 
+		/// <summary>
+		/// Gets the player manager.
+		/// Enforces the singleton design pattern. Every scene has the same PlayerManager thanks to it.
+		/// Saves gamedata when transitioning to next scene.
+		/// </summary>
         public void GetPlayerManager()
         {
             if (instance != null && instance != this)
-            {
+			{
                 Destroy(this.gameObject);
                 return;
             }
@@ -152,6 +196,8 @@ namespace Wolfpack.Managers
         {
             if (this != instance) return;
             SetInitialReference();
+			OnEnable();
+			Start();
         }
 
         public void OnEnable()
@@ -172,14 +218,14 @@ namespace Wolfpack.Managers
         public void Awake()
         {
             GetPlayerManager();
-            Debug.Log("PlayerManager Awake");
+			Debug.Log("PlayerManager Awake " + this.GetHashCode());
             SetInitialReference();
             InitializeInventory();
         }
 
         public void Start()
         {
-            Debug.Log("PlayerManager Start");
+			Debug.Log("PlayerManager Start " + this.GetHashCode());
             player.SetHealth(health);
             UpdateHealthBar();
             ToggleItem();
@@ -198,23 +244,29 @@ namespace Wolfpack.Managers
             // Makes the movement relative to time
             movement *= Time.deltaTime;
 
-            player.Walk(movement.normalized);
+			//get dodge input from player
+			bool dodge = InputWrapper.GetButtonDown("Dodge");
+
+			if (dodge)
+			{
+				player.StartDodge();
+			}
+
+			player.Walk(movement.normalized);
 
             //get targeting input from player
             bool target = InputWrapper.GetButtonDown("Target");
 
             if (target)
             {
-                player.ToggleTarget();
-				if (player.target != null) {
-					inCombat = true;
-				} else {
-					inCombat = false;
-				}
+				if (!player.inCombat)
+					player.Interact();
+				else
+                	player.ToggleTarget();
             }
 
             //get attack input from player
-            bool atk = InputWrapper.GetButtonDown("Attack light");
+            bool atk = InputWrapper.GetButtonDown("Attack");
 
             if (atk)
             {
@@ -232,8 +284,7 @@ namespace Wolfpack.Managers
 
             if(useItem)
             {
-				if (inCombat) UseItem();
-				else player.Interact();
+				UseItem();
             }
         }
     }

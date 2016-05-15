@@ -10,11 +10,13 @@ namespace Wolfpack
 
 	public enum PotionEffect { HEAL = 0, BUFF = 1 }
 
+	public enum Alegiance { GOODGUYS, BADGUYS }
+
     public interface IScriptable
     {
-        void DoScriptMove(int x, int y);
+		void DoScriptMove(Vector2 destination);
         void DoScriptAttack();
-        void DoScriptDie();
+		void DoScriptDie(int time);
     }
 
     public interface IControlable
@@ -31,6 +33,7 @@ namespace Wolfpack
     public interface IAttackable
     {
         void UpdateHealth(int dmg);
+		void Stagger();
     }
 
     public interface IKillable
@@ -40,6 +43,6 @@ namespace Wolfpack
 
     public interface IInteractable
     {
-        void Interact(PlayerCharacter player);
+        void Interact(PlayerCharacterScript player);
     }
 }

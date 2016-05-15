@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Wrapped user input.
+/// Only used to gain control over user input and restrict it in some cases.
+/// </summary>
 public static class InputWrapper {
 
     public static bool inputEnabled = false;
@@ -19,7 +23,7 @@ public static class InputWrapper {
     {
         bool retval = false;
 
-        if (inputEnabled)
+		if (inputEnabled || designation.Equals("Target") || designation.Equals("Pause"))
             retval = Input.GetButtonDown(designation);
 
         return retval;

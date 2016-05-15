@@ -9,8 +9,9 @@ namespace Wolfpack
     /// </summary>
     public class IsometricTriggerScript : MonoBehaviour
     {
-
+		//cached sprite renderer
         public Renderer cachedRenderer;
+		//layer offset value
         public int value;
 
         void OnTriggerEnter2D(Collider2D col)

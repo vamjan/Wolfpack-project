@@ -11,7 +11,6 @@ namespace Wolfpack.Managers
     /// <summary>
     /// Class of Game Manager to take care of game cycle. Also contains events for pausing and unpausing game and for menu control.
     /// Singleton design pattern.
-    /// 
     /// </summary>
     public class GameManager : MonoBehaviour
     {
@@ -19,7 +18,7 @@ namespace Wolfpack.Managers
 
         /// 
         /// EVENTS
-        /// 
+		/// (not used in any way yet, still hopeful I will find a way to use those)
         public delegate void GameManagerEventHandler();
         public event GameManagerEventHandler GameStartEvent;
         public event GameManagerEventHandler GameOverEvent;
@@ -39,34 +38,23 @@ namespace Wolfpack.Managers
         public static GameManager instance = null;
         //private reference to the character script for making calls to the public api.
         [SerializeField]
-        private PlayerCharacter player;
-        //reference to the camera
-        [SerializeField]
-        private Camera mainCamera;
+        private PlayerCharacterScript player;
 
-        //public GameObject loadingImage;
-
-        public void LoadScene(int level)
+		/// <summary>
+		/// Reloads the scene.
+		/// Used for restarting.
+		/// </summary>
+		/// <param name="level">Level.</param>
+        public void ReloadScene(int level)
         {
             Destroy(PlayerManager.instance.gameObject);
             Destroy(this.gameObject);
             SceneManager.LoadScene(level);
         }
 
-        public void GetGameManager()
-        {
-            if (instance != null && instance != this)
-            {
-                Destroy(this.gameObject);
-                return;
-            }
-            else
-            {
-                instance = this;
-            }
-            DontDestroyOnLoad(this.gameObject);
-        }
-
+		/// <summary>
+		/// Calls the game start event.
+		/// </summary>
         public void CallGameStartEvent()
         {
             isGameOver = false;
@@ -79,10 +67,11 @@ namespace Wolfpack.Managers
             }
         }
 
+		/// <summary>
+		/// Calls the game over event.
+		/// </summary>
         public void CallGameOverEvent()
         {
-            isGameOver = true;
-
             if (GameOverEvent != null)
             {
                 GameOverEvent();
@@ -91,10 +80,27 @@ namespace Wolfpack.Managers
             GameComplete("Game Over!");
         }
 
+		/// <summary>
+		/// Calls the game finished event.
+		/// </summary>
+		public void CallGameFinishedEvent()
+		{
+			if (GameOverEvent != null)
+			{
+				GameOverEvent();
+			}
+
+			GameComplete("Game Finished!");
+		}
+
+		/// <summary>
+		/// Calls the pause toggle event.
+		/// </summary>
         public void CallPauseToggleEvent()
         {
             isPaused = !isPaused;
             Time.timeScale = isPaused ? 0.0f : 1.0f;
+			InputWrapper.inputEnabled = !isPaused;
 
             if (PauseToggleEvent != null)
             {
@@ -102,6 +108,9 @@ namespace Wolfpack.Managers
             }
         }
 
+		/// <summary>
+		/// Calls the menu toggle event.
+		/// </summary>
         public void CallMenuToggleEvent()
         {
             isMenuActive = !isMenuActive;
@@ -113,29 +122,67 @@ namespace Wolfpack.Managers
             }
         }
 
+		/// <summary>
+		/// Completes the game with custom message.
+		/// Used for Game Over and Game Finished
+		/// </summary>
+		/// <param name="msg">Message</param>
         private void GameComplete(string msg)
         {
             //if game complete is called before Start() it will break the game and it has to be restarted
-            Debug.Log(msg);
-            CallPauseToggleEvent();
-            CallMenuToggleEvent();
-            GameObject.Find("InGameMenu/BackButton").SetActive(false);
-            Text text = GameObject.Find("InGameMenu/Wolf").GetComponent<Text>();
-            text.text = msg;
+			if (!isGameOver) { //checking if game is already over (cant acces some buttons if it is)
+				isGameOver = true;
+				Debug.Log(msg);
+				CallPauseToggleEvent();
+				CallMenuToggleEvent();
+				GameObject.Find("InGameMenu/BackButton").SetActive(false);
+				Text text = GameObject.Find("InGameMenu/Wolf").GetComponent<Text>();
+				text.text = msg;
+			}
         }
 
+		/// <summary>
+		/// Gets the game manager.
+		/// Enforces the singleton design pattern. Every scene has the same GameManager thanks to it.
+		/// Saves gamedata when transitionig to next scene.
+		/// </summary>
+		public void GetGameManager()
+		{
+			if (instance != null && instance != this)
+			{
+				Destroy(this.gameObject);
+				return;
+			}
+			else
+			{
+				instance = this;
+			}
+			DontDestroyOnLoad(this.gameObject);
+		}
+
+		/// <summary>
+		/// Set initial references to neccesary objects and validate data.
+		/// </summary>
         private void SetInitialReference()
         {
-            player = GameObject.Find("Player").GetComponent<PlayerCharacter>();
+            player = GameObject.Find("Player").GetComponent<PlayerCharacterScript>();
             menu = GameObject.Find("InGameMenu");
         }
 
+		/// <summary>
+		/// Raises the level was loaded event.
+		/// Reinitializes the manager for new scene when new scene is loaded.
+		/// </summary>
+		/// <param name="level">Level</param>
         void OnLevelWasLoaded(int level)
         {
-            if (this != instance) return;
-            else SetInitialReference();
+			if (this != instance)
+				return;
+			SetInitialReference();
+			OnEnable();
+			Start();
         }
-
+			
         void OnEnable()
         {
             player.OnDeath += CallGameOverEvent;
@@ -152,14 +199,14 @@ namespace Wolfpack.Managers
         void Awake()
         {
             GetGameManager();
-            Debug.Log("GameManager Awake");
+			Debug.Log("GameManager Awake " + this.GetHashCode());
             SetInitialReference();
         }
 
         // Use this for initialization
         void Start()
         {
-            Debug.Log("GameManager Start");
+			Debug.Log("GameManager Start " + this.GetHashCode());
             menu.SetActive(false);
             InputWrapper.inputEnabled = true;
             CallGameStartEvent();
@@ -168,13 +215,12 @@ namespace Wolfpack.Managers
         // Update is called once per frame
         void Update()
         {
-
-            if (InputWrapper.GetButtonDown("Pause"))
-            {
-                CallPauseToggleEvent();
-                CallMenuToggleEvent();
-            }
-
+			if(!isGameOver)
+	            if (InputWrapper.GetButtonDown("Pause"))
+	            {
+	                CallPauseToggleEvent();
+	                CallMenuToggleEvent();
+	            }
         }
     }
 }

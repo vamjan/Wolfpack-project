@@ -4,6 +4,9 @@ using Wolfpack.Managers;
 
 namespace Wolfpack
 {
+	/// <summary>
+	/// Control game manager using ingame menu.
+	/// </summary>
     public class InGameMenuScript : MonoBehaviour
     {
         private GameManager manager = null;
@@ -21,18 +24,13 @@ namespace Wolfpack
 
         public void RestartGame()
         {
-            manager.LoadScene(1);
+            manager.ReloadScene(1);
             BackToGame();
         }
 
         void OnEnable()
         {
             manager = GameManager.instance;
-        }
-
-        void Awake()
-        {
-
         }
     }
 }

@@ -5,11 +5,11 @@ using Wolfpack.Characters;
 
 namespace Wolfpack
 {
-    public class CameraFollow : MonoBehaviour
+    public class CameraFollowScript : MonoBehaviour
     {
-        public PlayerCharacter target;
-        public float damping = 1;
-        public float lookAheadFactor = 3;
+        public PlayerCharacterScript target;
+        public float damping = 0.2f;
+        public float lookAheadFactor = 5;
 
         private float offsetZ;
         private Vector3 currentVelocity;

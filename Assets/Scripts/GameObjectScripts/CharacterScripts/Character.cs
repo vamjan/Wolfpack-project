@@ -3,6 +3,7 @@ using System.Collections;
 using System;
 using Wolfpack.Managers;
 using System.ComponentModel;
+using System.Linq;
 
 namespace Wolfpack.Characters
 {
@@ -12,27 +13,37 @@ namespace Wolfpack.Characters
     public class Character : MonoBehaviour, IMovable, IAttackable, IScriptable
     {
         public int maxHealth;
-        //character hit points
-        [SerializeField]
+        //character maximum hit points
         public int health;
         //when hit points reach zero, character dies
-        [SerializeField]
-        protected bool isDead;
-        //maximum runing speed
         public float maxSpeed;
-        //current runing speed (not the same as max speed most of the times
-        public float speed;
+		//current runing speed (not the same as max speed most of the times)
+        protected float speed = 0;
         //direction of movement, normalized vector
         public Vector2 direction;
         //actual movement vector
         public Vector2 movement;
         //determines if the character can turn by movement or not
-        public bool turnLocked;
+		public bool isDead = false;
+		//maximum runing speed (set by editor)
+		protected bool turnLocked = false;
         //determines if character is moving or is idle
-        public bool idle;
+		protected bool idle = true;
+		//determines if character is in dodging motion
+		protected bool dodging = false;
+		//time needed to perform dodge motion (defaulted to 0.5 sec)
+		protected float dodgeTime = 0.5f;
+		//maximum amout of character poise
+		protected const int MAX_POISE = 20;
+		//amount of damage before character gets staggered
+		protected int poise = MAX_POISE;
+		//enum alegiance, to avoid damaging allied characters
+		public Alegiance al;
         //targeted enemy
-        public GameObject target;
+		[SerializeField]
+        protected GameObject target;
 
+		protected Character targetScript;
         //cached version of important components (for performance reasons)
         //hitbox used for attacking
         protected Collider2D cachedAttackHitbox;
@@ -44,52 +55,90 @@ namespace Wolfpack.Characters
         protected SpriteRenderer cachedRenderer;
         //character animator (contains all animations)
         protected Animator cachedAnim;
-
+		//level manager reference for targeting
         protected LevelManager levelManager;
 
-
+		/// <summary>
+		/// Attack invoked by another script (manager).
+		/// </summary>
         public virtual void DoScriptAttack()
         {
-            throw new NotImplementedException();
+			Attack();
         }
 
-        public virtual void DoScriptDie()
+		/// <summary>
+		/// Death invoked by another script (manager).
+		/// Does not take health in consideration.
+		/// </summary>
+		/// <param name="time">Time</param>
+		public virtual void DoScriptDie(int time)
         {
-            throw new NotImplementedException();
+			throw new NotImplementedException();
         }
 
-        public virtual void DoScriptMove(int x, int y)
+		/// <summary>
+		/// Movement invoked by another script (manager).
+		/// Moves towards target destination normaly.
+		/// </summary>
+		/// <param name="destination">Destination</param>
+        public virtual void DoScriptMove(Vector2 destination)
         {
-            throw new NotImplementedException();
+			Walk(destination.normalized);
         }
 
+		/// <summary>
+		/// Method needed to implement IAttackable. Invokes health changes.
+		/// </summary>
+		/// <param name="value">Change value</param>
         public virtual void UpdateHealth(int value)
         {
             ChangeHealth(value);
         }
 
-        protected void ChangeHealth(int value)
+		/// <summary>
+		/// Changes health by given amount.
+		/// If character drops below 0 health, it flags him as dead.
+		/// If character takes enough damage to get staggered, it will get staggered.
+		/// </summary>
+		/// <param name="value">Change value</param>
+		protected void ChangeHealth(int value)
         {
-            if (health < maxHealth)
+            health += value;
+            if(health > maxHealth)
             {
-                health += value;
-                if(health > maxHealth)
-                {
-                    health = maxHealth;
-                }
+                health = maxHealth;
             }
             if (health <= 0)
             {
                 isDead = true;
-            }
+			} else if (value < 0) {
+				poise += value;
+				if(poise <= 0) {
+					Stagger();
+					poise = MAX_POISE;
+				}
+			}
         }
 
+		/// <summary>
+		/// Character drinks the potion. Only health potions are implemented so far.
+		/// Second parameter is defaulted to 0 as healing potion.
+		/// </summary>
+		/// <param name="health">Health</param>
+		/// <param name="effect">Effect - default 0 as healing</param>
 		public void DrinkPotion(int health, int effect = 0) {
 			//only healing potions implemented so far
-			if(health != maxHealth)
-				UpdateHealth(health);
+			float time = Animate("Drink");
+			StartCoroutine(PauseMovement(time/3*2));
+			UpdateHealth(health);
+			StartCoroutine(PauseMovement(time/3));
 		}
-			
+
+		/// <summary>
+		/// Walk to specified point.
+		/// Wraps all methods needed to walk.
+		/// </summary>
+		/// <param name="point">Point</param>
         public void Walk(Vector2 point)
         {
             GetIsometricVector(ref point);              //get isometric vector instead of 45 degree variations
@@ -103,11 +152,11 @@ namespace Wolfpack.Characters
         }
 
         /// <summary>
-        /// 
-        /// 
+        /// Execute movement towards control vector point. Uses rigidbody2D and Unity build in physics system.
+		/// Needed to implement IMovable.
         /// </summary>
         /// <param name="control">Control vector for movement direction</param>
-        public void Move(Vector2 control)
+        public virtual void Move(Vector2 control)
         {
             //don't move when control vector is zero
             if (control.x == 0 && control.y == 0)
@@ -121,19 +170,24 @@ namespace Wolfpack.Characters
                 idle = false;
                 //turn with movement of not turn locked
                 if (!turnLocked) Turn(control);
-                //keep tracking target when turn locked
-                else Turn(target.transform.position - transform.position);
                 //get angle of movement to movement direction fo animator
                 SetMoveAngle(control);
-                Accelerate(ref speed);
+				if (dodging)
+					Dodge(ref speed);
+				else
+                	Accelerate(ref speed);
                 movement = control * speed;
                 cachedRenderer.sortingOrder = levelManager.GetLayer(transform.position.y);
             }
             cachedRigidBody2D.velocity = movement;
-            direction.Normalize();
         }
 
-        public void Turn(Vector2 newHeading)
+		/// <summary>
+		/// Turn the towards newHeading.
+		/// Needed to implement IMovable.
+		/// </summary>
+		/// <param name="newHeading">New heading</param>
+        public virtual void Turn(Vector2 newHeading)
         {
             direction = newHeading;
 
@@ -146,6 +200,8 @@ namespace Wolfpack.Characters
             {
                 transform.localRotation = Quaternion.Euler(0, 0, 0);
             }
+
+			direction.Normalize();
         }
 
         /// <summary>
@@ -175,56 +231,122 @@ namespace Wolfpack.Characters
             }
         }
 
+		/// <summary>
+		/// Accelerate the specified speed.
+		/// </summary>
+		/// <param name="speed">referenced Speed</param>
         private void Accelerate(ref float speed)
         {
-			//TODO: check if accel is linked with framerate
             if (speed < maxSpeed)
             {
-                speed += (maxSpeed - speed) / 5;
+				speed += (maxSpeed - speed) / (0.15f/Time.deltaTime);
                 speed = Mathf.Ceil(speed);
-            }
+			} else {
+				speed = maxSpeed;
+			}
         }
 
-		public void Shoot(GameObject projectilePrefab, int damage, float velocity, int timeToLive) {
-			Vector3 tmpTarget = (target == null) ? (Vector3)direction : target.transform.position.normalized;
-			Debug.Log(direction);
-			//TODO: start animation
-			StartCoroutine(PauseMovement(0.2f)); //until end of animation
-			CreateProjectile(projectilePrefab, damage, velocity, timeToLive, tmpTarget);
-			StartCoroutine(PauseMovement(0.2f)); //backswing
+		/// <summary>
+		/// Sets dodge flag to true. Character will switch to dodge motion for next dodgeTime value.
+		/// </summary>
+		public void StartDodge() {
+			if(movement.normalized != Vector2.zero)
+				dodging = true;
 		}
 
+		/// <summary>
+		/// Counterpart to Accelerate method, but for dodge motion.
+		/// </summary>
+		/// <param name="speed">referenced Speed</param>
+		private void Dodge(ref float speed) {
+			speed = maxSpeed * 2;
+			dodgeTime -= Time.deltaTime * 2;
+			if (dodgeTime < 0) {
+				dodging = false;
+				dodgeTime = 0.5f;
+			}
+		}
+
+		/// <summary>
+		/// Shoot the specified projectilePrefab, damage, velocity and timeToLive.
+		/// Wraps all neccesary methods to shoot a projectile.
+		/// </summary>
+		/// <param name="projectilePrefab">Projectile prefab</param>
+		/// <param name="damage">Damage</param>
+		/// <param name="velocity">Velocity</param>
+		/// <param name="timeToLive">Time to live</param>
+		public virtual void Shoot(GameObject projectilePrefab, int damage, float velocity, int timeToLive) {
+			//Vector3 tmpTarget = (target == null) ? (Vector3)direction : target.transform.position.normalized;
+			Vector3 tmpTarget = (Vector3)direction;
+			float time = Animate("Throw");
+			StartCoroutine(PauseMovement(time/2)); //until end of animation
+			CreateProjectile(projectilePrefab, damage, velocity, timeToLive, tmpTarget);
+			StartCoroutine(PauseMovement(time/2)); //backswing
+		}
+
+		/// <summary>
+		/// Creates the projectile from specified prefab.
+		/// Initilazes control script and adds it to projectile.
+		/// </summary>
+		/// <param name="projectilePrefab">Projectile prefab</param>
+		/// <param name="damage">Damage</param>
+		/// <param name="velocity">Velocity</param>
+		/// <param name="timeToLive">Time to live</param>
+		/// <param name="projectileTarget">Projectile target</param>
 		public void CreateProjectile(GameObject projectilePrefab, int damage, float velocity, int timeToLive, Vector3 projectileTarget) {
-			//TODO: magic number, transform will be added to character so projectiles can't hit their user
 			GameObject projectile = (GameObject)Instantiate(projectilePrefab, transform.position + (Vector3)direction * 20, transform.rotation);
 			//unity does not like NEW, so I have to initialize controler script like this :(
 
-			Projectile projectilController = projectile.AddComponent<Projectile>();
+			ProjectileScript projectilController = projectile.AddComponent<ProjectileScript>();
 			projectilController.velocity = velocity;
 			projectilController.damage = damage;
 			projectilController.timeToLive = timeToLive;
+			projectilController.setOwner(this);
 
 			projectile.GetComponent<Rigidbody2D>().velocity = projectileTarget * velocity;
 		}
 
-        public void Attack()
+		/// <summary>
+		/// Method to invoke attacking by control script.
+		/// </summary>
+        public virtual void Attack()
         {
-            cachedAnim.SetTrigger("Attack");
-            StartCoroutine(PauseMovement(0.5f));
+			float time = Animate("Attack");
+			StartCoroutine(PauseMovement(time));
         }
+
+		/// <summary>
+		/// Stagger when you take enough damage.
+		/// </summary>
+		public virtual void Stagger() {
+			float time = Animate("Stagger");
+			StartCoroutine(PauseMovement(time));
+		}
+
+		/// <summary>
+		/// Sets animation trigger in cachedAnim.
+		/// Then gets animation clip lenght in seconds and returns it.
+		/// </summary>
+		/// <param name="anim">Animation</param>
+		protected float Animate(string anim) {
+			cachedAnim.SetTrigger(anim);
+			AnimationClip c = cachedAnim.runtimeAnimatorController.animationClips.FirstOrDefault(x => x.name.Equals("Mainchar_" + anim.ToLower() + "_side"));
+			if (c != null) 
+				return c.length;
+			else
+				return 1.0f;
+		}
 
         /// <summary>
         /// Coroutine to pause character when it is performing some action.
         /// </summary>
         /// <param name="time">Pause time</param>
         /// <returns>IEnumerator - necessary for coroutines</returns>
-        protected IEnumerator PauseMovement(float time)
+        protected virtual IEnumerator PauseMovement(float time)
         {
             cachedRigidBody2D.constraints = RigidbodyConstraints2D.FreezeAll;
-			InputWrapper.inputEnabled = false;
             yield return new WaitForSeconds(time);
             cachedRigidBody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
-			InputWrapper.inputEnabled = true;
         }
        
         // Use this for initialization
@@ -239,16 +361,16 @@ namespace Wolfpack.Characters
             levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         }
 
-        void Start()
-        {
-
-        }
-
         // Update is called once per frame
         public virtual void Update()
         {
-            Debug.DrawLine(transform.position, transform.position + new Vector3(direction.x * 20, direction.y * 20, 0),
-            Color.red, 0.0f, false);
+			Debug.DrawLine(transform.position, transform.position + new Vector3(direction.x * 20, direction.y * 20, 0),
+				Color.red, 0.0f, false);
+
+			//keep turning with target
+			if(target != null) {
+				Turn(target.transform.position - transform.position);
+			}
         }
     }
 }
